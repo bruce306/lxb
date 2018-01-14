@@ -1,0 +1,14 @@
+
+This directory contains other programs of interest.
+
+Currrently it only contains a program I used lxb
+to do the initial framework for, then coded the 
+rest myself. 
+
+It is a demo program of how to use the Xaw widgets
+for panner porthole and tree widgets for the GUI
+widget structure being made and displayed in the 
+lxb program.
+
+	1/14/18
+	BEP
