@@ -1,0 +1,171 @@
+#
+#	File: Makefile for wtree
+#
+
+CC=cc
+
+#INCLUDES = -I. -I../../../oldX11/include
+
+INCLUDES = -I../include -I../../../oldX11/include -I/usr/include/x86_64-linux-gnu -I-I/usr/include/x86_64-linux-gnu -I/usr/lib/gcc/x86_64-linux-gnu/5/include
+
+CFLAGS = -g  -ggdb $(INCLUDES)
+LDFLAGS = -o
+
+XLIBS = -lXm -lX11 -lXmu -lXt -lXaw
+LIBS = $(XLIBS)
+
+OBJS = \
+	Tree.o \
+	Panner.o \
+	Porthole.o \
+	tst.o
+
+tst: tst.o tst_util.o wtree.o
+	$(CC) $(CFLAGS) tst.o tst_util.o wtree.o $(LIBS) $(LDFLAGS) $@
+
+all: clean depend tst
+
+clean:
+	rm -f *.o tst
+
+depend:
+	makedepend $(INCLUDES) $(DEFINES) *.c
+
+# DO NOT DELETE
+
+Panner.o: /usr/include/X11/IntrinsicP.h /usr/include/X11/Intrinsic.h
+Panner.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+Panner.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+Panner.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+Panner.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+Panner.o: /usr/include/string.h /usr/include/features.h
+Panner.o: /usr/include/stdc-predef.h /usr/include/xlocale.h
+Panner.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+Panner.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+Panner.o: /usr/include/X11/RectObj.h /usr/include/X11/CoreP.h
+Panner.o: /usr/include/X11/CompositeP.h /usr/include/X11/ConstrainP.h
+Panner.o: /usr/include/X11/ObjectP.h /usr/include/X11/RectObjP.h
+Panner.o: /usr/include/X11/StringDefs.h
+Panner.o: ../../../oldX11/include/X11/Xmu/CharSet.h
+Panner.o: ../../../oldX11/include/X11/Xaw/XawInit.h
+Panner.o: ../../../oldX11/include/X11/Xaw/PannerP.h
+Panner.o: ../../../oldX11/include/X11/Xaw/Panner.h
+Panner.o: ../../../oldX11/include/X11/Xaw/Reports.h
+Panner.o: ../../../oldX11/include/X11/Xaw/SimpleP.h
+Panner.o: ../../../oldX11/include/X11/Xaw/Simple.h
+Panner.o: ../../../oldX11/include/X11/Xmu/Converters.h /usr/include/X11/Xos.h
+Panner.o: /usr/include/fcntl.h /usr/include/time.h /usr/include/unistd.h
+Panner.o: /usr/include/getopt.h /usr/include/X11/Xarch.h
+Panner.o: ../../../oldX11/include/X11/Xmu/Misc.h
+Panner.o: ../../../oldX11/include/X11/Xmu/Drawing.h /usr/include/stdio.h
+Panner.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+Panner.o: /usr/include/ctype.h /usr/include/endian.h /usr/include/math.h
+Porthole.o: /usr/include/X11/IntrinsicP.h /usr/include/X11/Intrinsic.h
+Porthole.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+Porthole.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+Porthole.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+Porthole.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+Porthole.o: /usr/include/string.h /usr/include/features.h
+Porthole.o: /usr/include/stdc-predef.h /usr/include/xlocale.h
+Porthole.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+Porthole.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+Porthole.o: /usr/include/X11/RectObj.h /usr/include/X11/CoreP.h
+Porthole.o: /usr/include/X11/CompositeP.h /usr/include/X11/ConstrainP.h
+Porthole.o: /usr/include/X11/ObjectP.h /usr/include/X11/RectObjP.h
+Porthole.o: /usr/include/X11/StringDefs.h
+Porthole.o: ../../../oldX11/include/X11/Xaw/XawInit.h
+Porthole.o: ../../../oldX11/include/X11/Xaw/PortholeP.h
+Porthole.o: ../../../oldX11/include/X11/Xaw/Porthole.h
+Porthole.o: ../../../oldX11/include/X11/Xaw/Reports.h
+Porthole.o: ../../../oldX11/include/X11/Xmu/Misc.h
+Tree.o: /usr/include/X11/IntrinsicP.h /usr/include/X11/Intrinsic.h
+Tree.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+Tree.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+Tree.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+Tree.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+Tree.o: /usr/include/string.h /usr/include/features.h
+Tree.o: /usr/include/stdc-predef.h /usr/include/xlocale.h
+Tree.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+Tree.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+Tree.o: /usr/include/X11/RectObj.h /usr/include/X11/CoreP.h
+Tree.o: /usr/include/X11/CompositeP.h /usr/include/X11/ConstrainP.h
+Tree.o: /usr/include/X11/ObjectP.h /usr/include/X11/RectObjP.h
+Tree.o: /usr/include/X11/StringDefs.h
+Tree.o: ../../../oldX11/include/X11/Xaw/XawInit.h
+Tree.o: ../../../oldX11/include/X11/Xaw/Cardinals.h
+Tree.o: ../../../oldX11/include/X11/Xaw/TreeP.h
+Tree.o: ../../../oldX11/include/X11/Xaw/Tree.h
+Tree.o: ../../../oldX11/include/X11/Xmu/Converters.h
+tst.o: /usr/include/stdio.h /usr/include/features.h
+tst.o: /usr/include/stdc-predef.h /usr/include/libio.h
+tst.o: /usr/include/_G_config.h /usr/include/wchar.h /usr/include/Xm/Xm.h
+tst.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+tst.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+tst.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+tst.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+tst.o: /usr/include/X11/Xresource.h /usr/include/string.h
+tst.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+tst.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+tst.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+tst.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+tst.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+tst.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+tst.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+tst.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+tst.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+tst.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+tst.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+tst.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+tst.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+tst.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h /usr/include/Xm/Frame.h
+tst.o: /usr/include/Xm/DrawingA.h Tree.h
+tst.o: ../../../oldX11/include/X11/Xmu/Converters.h Panner.h
+tst.o: ../../../oldX11/include/X11/Xaw/Reports.h Porthole.h tst_util.h tst.h
+tst.o: wtree.h
+tst_util.o: /usr/include/stdio.h /usr/include/features.h
+tst_util.o: /usr/include/stdc-predef.h /usr/include/libio.h
+tst_util.o: /usr/include/_G_config.h /usr/include/wchar.h
+tst_util.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+tst_util.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+tst_util.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+tst_util.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+tst_util.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+tst_util.o: /usr/include/string.h /usr/include/xlocale.h
+tst_util.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+tst_util.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+tst_util.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+tst_util.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+tst_util.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+tst_util.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+tst_util.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+tst_util.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+tst_util.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+tst_util.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+tst_util.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+tst_util.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+tst_util.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h tst_util.h
+wtree.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+wtree.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+wtree.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+wtree.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+wtree.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+wtree.o: /usr/include/string.h /usr/include/features.h
+wtree.o: /usr/include/stdc-predef.h /usr/include/xlocale.h
+wtree.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+wtree.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+wtree.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+wtree.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+wtree.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+wtree.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+wtree.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+wtree.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+wtree.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+wtree.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+wtree.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+wtree.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+wtree.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+wtree.o: /usr/include/Xm/PushB.h /usr/include/Xm/Frame.h
+wtree.o: /usr/include/Xm/DrawingA.h Tree.h
+wtree.o: ../../../oldX11/include/X11/Xmu/Converters.h Panner.h
+wtree.o: ../../../oldX11/include/X11/Xaw/Reports.h Porthole.h tst_util.h
+wtree.o: wtree.h

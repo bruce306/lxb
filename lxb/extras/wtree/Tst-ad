@@ -1,0 +1,7 @@
+*frame_6.shadowType:		XmSHADOW_OUT
+*frame_6.shadowThickness:	3
+*frame_6.borderWidth:		0
+*panner*background:			SlateGray
+*panner*shadowThickness:	1
+
+*tree*background:			SlateGray
