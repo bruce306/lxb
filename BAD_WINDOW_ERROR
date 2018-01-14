@@ -1,0 +1,6 @@
+I got a bad window error and program abort on my old Motif programs I compiled with no warnings or errors under Ubuntu v16. 
+I searched for a solution but didn't find any successful ones. 
+By accident I found a solution - the Motif library has to be loaded first, before the X libraries.
+
+For example, the following line in a makefile fixed the problem:
+  cc -o <program executable name> <object file names> -lxm -l X11 -lXt
