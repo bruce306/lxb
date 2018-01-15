@@ -16,7 +16,21 @@ Notes about the data directory:
 	in the include directory are for the Ubuntu v16 ported to a
 	64-bit system.
 
+01/14/18
+	To compile the lxb program source under v16 of Ubuntu Linux
+	on a 64-bit machine just:
+		1) cd into the source directory
+		2) type make, or make all
+
+	To run lxb just type "lxb". Make sure your PATH is set to 
+	search the current directory, or
+
+		type: "./lxb"
+
 ----------------------------------------------------------------------------
+
+Below is old---
+
 
 1) Building lxb
 
