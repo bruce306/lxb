@@ -2,4 +2,4 @@
  *	File:	version.h
  *******************************************************/
 
-#define LXB_VERSION		"0.60"
+#define LXB_VERSION		"0.61"
