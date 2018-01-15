@@ -7,3 +7,4 @@ Motif, C, UNIX (Ubuntu Linux), X11
 Directories are:
   Xclients: ported source of original X-clients to Ubunto
   oldX11: required X11 includes and other files for the program lxb
+  lxb:  program lxb source
