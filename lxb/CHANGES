@@ -1,0 +1,21 @@
+
+What's New in Version 0.51 of lxb
+---------------------------------
+
+This is really a minor release. Little has changed since the
+original one done for X11R5 and Motif 1.1 on a 486. I am 
+working on a more major release (0.6) that I hope to have out
+soon.
+
+
+Changes:
+--------
+
+- bug fixes.
+
+- added fallback resources so that Lxb-ad no longer needs be used
+
+- updated some of the code (fe, appcontext functions)
+
+----------------------------------------------------------------------------
+

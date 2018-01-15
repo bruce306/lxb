@@ -1,0 +1,56 @@
+----------------------------------------------------------------------------
+
+LXB - Linux X/Motif Builder Version 0.61
+File: README 
+
+01/14/18
+BEP
+
+----------------------------------------------------------------------------
+
+1) Building lxb
+
+Unzip and untar the archive lxb-0.51.tar.gz. You will see several directories
+and files.
+
+In the "src" directory you can try the Makefile but most likely will have
+to edit it.
+
+Then:
+
+make clean; make depend; make
+
+2) Installing lxb
+
+Their is an app-defaults file (Lxb-ad) in the "src" directory. However,
+with this release it is not needed, and my advice is not to mess with
+the resources unless you have to.
+
+Install the executable somewhere your "path" refers to.
+
+3) Using lxb
+
+Limited documentation is in the file INSTRUCT. (TBD)
+
+4) No Warranty of Any Kind
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+
+5) Copyright
+
+This software is copyrighted under the terms of the GNU copyright. See the
+file COPYING for more details.
+
+6) Web Site
+
+The Web page for lxb is at:
+
+http://www.umn.edu/nlhome/g257/parki005/lxb/lxb.html
+
+Further information including screen shots can be found there.
+
+Bruce 
+email: parki005@tc.umn.edu
+

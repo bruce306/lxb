@@ -1,0 +1,13 @@
+
+lxb is an X/Motif interactive graphical user interface builder. With it you 
+can build GUI made up of Motif widgets instantiated by clicking on icons, move 
+and resize them with the mouse, and edit their resources. Once the GUI is 
+built, pressing a button will produce the required C source and header files to 
+build the GUI, and an X resource file and Makefile. 
+
+lxb is a work in progress. Many but not all Motif widgets are available, and
+many but not all resources can be edited. There are many features of a good GUI 
+builder yet to be done.
+
+Bruce.
+
