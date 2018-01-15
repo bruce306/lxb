@@ -1,4 +1,30 @@
 
-This contains the C code source files (minus the include files) for the main lxb program.
+1/10/18
 
-01/12/18
+To build:
+
+1) If you have made any changes in the tool directory,
+rebuild it first. If you have not, you do not need
+to do anything there.
+
+2) If you are on a Linux system, try a make with the
+existing Makefile. You may need to change the paths
+to find your libraries and includes.
+
+The provided Makefiles :
+
+	Makefile:			Works on my system
+	Makefile.ref:		Generic (actually Linux...)
+
+3) Then you can:
+
+	1)	make clean
+	2)	make depend
+	3)	make
+
+To run:
+
+	lxb
+or
+	./lxb
+

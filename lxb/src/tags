@@ -1,0 +1,301 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+LxbMakeForm	forms.c	/^LxbMakeForm (Widget parent, String name)$/;"	f
+LxbSetConstraints	forms.c	/^LxbSetConstraints (Widget w, int top, int bottom, int left, int right,$/;"	f
+LxbSetOffsets	forms.c	/^LxbSetOffsets (Widget w, int top, int bottom, int left, int right)$/;"	f
+LxbSetPositions	forms.c	/^LxbSetPositions (Widget w, int top, int bottom, int left, int right)$/;"	f
+OLDdisplay_saveas_dialog	dialogs.c	/^OLDdisplay_saveas_dialog(Widget w)$/;"	f
+PannerCallback	Wtree.c	/^PannerCallback(Widget w, XtPointer closure, XtPointer report_ptr)$/;"	f	file:
+PortholeCallback	Wtree.c	/^PortholeCallback(Widget w, XtPointer panner_ptr, XtPointer report_ptr)$/;"	f	file:
+SetWidgetName	ResourceEd.c	/^SetWidgetName(Widget w, char *txt)$/;"	f	file:
+TEXT_OBJECT	TextObject.c	/^} TEXT_OBJECT;$/;"	t	typeref:struct:_textobj	file:
+TSTRUCT	populate.c	/^} TSTRUCT;$/;"	t	typeref:struct:_tstruct	file:
+_textobj	TextObject.c	/^typedef struct _textobj{$/;"	s	file:
+_tstruct	populate.c	/^typedef struct _tstruct{$/;"	s	file:
+ac	populate.c	/^static Pixel ac;												\/* armed color *\/$/;"	v	file:
+accept_callback	CallbackEd.c	/^accept_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+actions	translations.c	/^static XtActionsRec actions[] = {$/;"	v	file:
+actual	populate.c	/^	Widget actual;$/;"	m	struct:_tstruct	file:
+actual_parent	populate.c	/^	Widget actual_parent;$/;"	m	struct:_tstruct	file:
+add_noop_action	translations.c	/^add_noop_action()$/;"	f
+adjust_parent	data.c	/^adjust_parent(Widget act_w)$/;"	f
+appShell	lxb.c	/^Widget 	appShell 					= NULL;$/;"	v
+appcontext	lxb.c	/^XtAppContext appcontext;$/;"	v
+application_name	lxb.c	/^char 		*application_name = NULL;$/;"	v
+appname_callback	dialogs.c	/^appname_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+bb	about.c	/^static Widget bb = NULL;$/;"	v	file:
+bg	populate.c	/^static Pixel bg;												\/* unselected background color *\/$/;"	v	file:
+bsc	populate.c	/^static Pixel bsc;												\/* unselected bottom shadow color *\/$/;"	v	file:
+build_about_gui	about.c	/^build_about_gui(Widget parent)$/;"	f	file:
+build_called	CallbackEd.c	/^build_called(Widget parent)$/;"	f	file:
+build_gui	top.c	/^build_gui(Widget parent)$/;"	f
+build_help_gui	dialogs.c	/^build_help_gui(Widget parent)$/;"	f
+build_icons	Pallet.c	/^build_icons(Widget parent)$/;"	f	file:
+build_menu	menu.c	/^build_menu(Widget parent)$/;"	f
+build_pallet	Pallet.c	/^build_pallet(Widget parent)$/;"	f
+build_resource_editor	ResourceEd.c	/^build_resource_editor(Widget parent)$/;"	f
+build_wtree_area	Wtree.c	/^build_wtree_area(Widget parent, Widget *right_child)$/;"	f
+call_callback	util.c	/^call_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f
+call_instantiate	instant.c	/^call_instantiate(Widget parent, Widget icon, XtPointer client_data)$/;"	f
+called_shell	CallbackEd.c	/^static Widget called_shell = NULL;$/;"	v	file:
+cancel	TextObject.c	/^	Widget cancel;$/;"	m	struct:_textobj	file:
+cancel_callback	CallbackEd.c	/^cancel_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+cancel_callback	TextObject.c	/^cancel_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+change_widget_name	data.c	/^change_widget_name(Widget w, char *newname)$/;"	f
+check_cascade_button	cmenu.c	/^check_cascade_button(Widget *real_parent, unsigned char *parent_type) $/;"	f	file:
+check_file	code.c	/^check_file(char *filename)$/;"	f
+check_parent_legal	instant.c	/^check_parent_legal(Widget w, Widget icon)$/;"	f	file:
+choose_default_name	data.c	/^choose_default_name(WidgetClass wclass)$/;"	f
+clear_resource_editor	ResourceEd.c	/^clear_resource_editor()$/;"	f
+cmdline_options	lxb.c	/^int cmdline_options(int argc, char *argv[])$/;"	f	file:
+code	code.c	/^code()$/;"	f
+code_global_vars	code_gui.c	/^code_global_vars(FILE *file)$/;"	f
+code_gui	code_gui.c	/^code_gui(FILE *file)$/;"	f
+code_header_file	code_hdr.c	/^code_header_file(FILE *file)$/;"	f
+code_local_vars	code_gui.c	/^code_local_vars(FILE *file)$/;"	f
+code_special_colorname	code_special.c	/^code_special_colorname(FILE *file, char *widget_name, RES *rptr, int n)$/;"	f
+code_special_fontlist	code_special.c	/^code_special_fontlist(FILE *file, char *shellname, RES *rptr, int n)$/;"	f
+code_special_free	code_special.c	/^code_special_free(FILE *file)$/;"	f
+code_special_widget	code_special.c	/^code_special_widget(FILE *file, RES *rptr, int n)$/;"	f
+code_special_xmstring	code_special.c	/^code_special_xmstring(FILE *file, RES *rptr, int n)$/;"	f
+color_dbase	color.c	16;"	d	file:
+color_dbasename	color.c	17;"	d	file:
+colors	color.c	/^static CNAMELIST colors;$/;"	v	file:
+constr_callback	util.c	/^constr_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f
+convert_value	cvt_resvalue.c	/^convert_value(ArgList arg, char *resource_name, char *resource_value)$/;"	f
+copy_colornames	special.c	/^copy_colornames(void *dummy, int *number)$/;"	f	file:
+counter	data.c	/^static int counter = 1;     \/* appshell is "0" *\/$/;"	v	file:
+create_cascade_button	cascade.c	/^create_cascade_button(Widget parent, unsigned char parent_type)$/;"	f
+create_composite	create_composite.c	/^create_composite(Widget parent, WidgetClass wclass)$/;"	f
+create_function	cfunctions.c	/^create_function(char *function_name, Widget parent, char *widget_name, Arg args[], int n)$/;"	f
+create_menu	cmenu.c	/^create_menu(Widget parent, Widget icon)$/;"	f
+create_menubar	menubar.c	/^create_menubar(Widget parent)$/;"	f
+create_menushell	menushell.c	/^create_menushell(Widget parent)$/;"	f
+create_playgui	play.c	/^create_playgui()$/;"	f
+create_scrolled	cscrolled.c	/^create_scrolled(Widget parent, char *name)$/;"	f
+current_class	ResourceEd.c	/^Widget  current_class;    $/;"	v
+current_edit	ResourceEd.c	/^static Widget current_edit = NULL;$/;"	v	file:
+current_name	ResourceEd.c	/^Widget  current_name;$/;"	v
+delete_callback	CallbackEd.c	/^delete_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+delete_primitive_widget	delete.c	/^delete_primitive_widget(Widget w, WSTRUCT *wptr)$/;"	f	file:
+delete_widget	delete.c	/^delete_widget(Widget w, Boolean override)$/;"	f
+deselect_handler	top.c	/^deselect_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+destroy_callback	cascade.c	/^destroy_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+destroy_playgui	play.c	/^destroy_playgui()$/;"	f
+diag_callback	menu.c	/^diag_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+diag_misc	diag.c	/^diag_misc(Widget w)$/;"	f
+diag_resource_list	diag.c	/^diag_resource_list(Widget w)$/;"	f
+diag_widget_tree	diag.c	/^diag_widget_tree()$/;"	f
+dialog	dialogs.c	/^static Widget dialog = NULL;$/;"	v	file:
+display_about_lxb	dialogs.c	/^display_about_lxb(Widget parent)$/;"	f
+display_appname_dialog	dialogs.c	/^display_appname_dialog(Widget w)$/;"	f
+display_called	CallbackEd.c	/^display_called(Widget parent, char *callback_type)$/;"	f
+display_new_dialog	dialogs.c	/^display_new_dialog()$/;"	f
+display_open_dialog	dialogs.c	/^display_open_dialog()$/;"	f
+display_playmode_dialog	dialogs.c	/^display_playmode_dialog()$/;"	f
+display_save_dialog	dialogs.c	/^display_save_dialog(Widget w)$/;"	f
+display_saveas_dialog	dialogs.c	/^display_saveas_dialog(Widget w)$/;"	f
+displayed	Pallet.c	/^static Boolean displayed = False;   \/* indicates if it is currently popped up *\/$/;"	v	file:
+do_children	cscrolled.c	/^do_children(Widget scwindow, Widget mainchild)$/;"	f	file:
+done_callback	about.c	/^done_callback(Widget w, XtPointer client_data, XtPointer call_data)   $/;"	f	file:
+dump_callbacks	dump.c	/^dump_callbacks()$/;"	f
+dump_constraint_names	dump.c	/^dump_constraint_names(Widget w, Cardinal *no_constraints, ALLLIST	*constraints)$/;"	f
+dump_resources	dump.c	/^dump_resources(Widget w, Cardinal *no_resources, ALLLIST *resources)$/;"	f
+edit_callback	menu.c	/^edit_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+editor_shell	ResourceEd.c	/^static Widget editor_shell = NULL;$/;"	v	file:
+end_program	end_program.c	/^end_program(int flag)$/;"	f
+enter_handler	select.c	/^enter_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+file_callback	menu.c	/^file_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+fontlist_created	code_special.c	/^static Boolean fontlist_created = False;$/;"	v	file:
+free_gui_list	delete.c	/^free_gui_list()$/;"	f
+free_resource_list	delete.c	/^free_resource_list(WSTRUCT *wptr)$/;"	f	file:
+get_callback	callbacks.c	/^get_callback(char *callback_type)$/;"	f
+get_callbacks	get_resnames.c	/^get_callbacks(Widget w, ALLLIST *callbacks, Cardinal *no_callbacks)$/;"	f
+get_children	children.c	/^get_children(Widget widget, int *no_allkids)$/;"	f
+get_colornames	color.c	/^get_colornames(CNAMELIST *cnamelist, int *number)$/;"	f
+get_constraints	get_resnames.c	/^get_constraints(Widget w, ALLLIST *constraints, Cardinal *no_constraints)$/;"	f
+get_counter	data.c	/^get_counter()$/;"	f
+get_datatype	misc.c	/^get_datatype(char *ptr, int *enumlist)$/;"	f
+get_datatype_index	misc.c	/^get_datatype_index(char *datatype)$/;"	f
+get_default_font	fonts.c	/^get_default_font()$/;"	f
+get_enum_number	misc.c	/^get_enum_number(int *enumlist, char *enum_name)$/;"	f
+get_enum_type	misc.c	/^get_enum_type(int *enumlist, int *number, char *buf)$/;"	f
+get_enum_value	get_resvalue.c	/^get_enum_value(Widget w, char *buf, char *ptr, int *enumlist, int index)$/;"	f	file:
+get_font_name	fonts.c	/^get_font_name(Widget w)$/;"	f
+get_fontlist	fonts.c	/^get_fontlist(Widget w, char* fontname)$/;"	f
+get_fonts	special.c	/^get_fonts(void *dummy, int *number)$/;"	f	file:
+get_parent_key	data.c	/^get_parent_key(Widget w)$/;"	f
+get_parent_node	populate.c	/^get_parent_node(Widget actual_parent)$/;"	f	file:
+get_parent_widget	data.c	/^get_parent_widget(int key)$/;"	f
+get_pixel	color.c	/^get_pixel(char *resource_value)$/;"	f
+get_pixel_color	color.c	/^get_pixel_color(Pixel pixel)$/;"	f
+get_play_parent	play.c	/^get_play_parent(int key)$/;"	f	file:
+get_play_sibling	play.c	/^get_play_sibling(Widget w)$/;"	f	file:
+get_resource_value	get_resvalue.c	/^get_resource_value(char *resource_name, int *enumlist)$/;"	f
+get_resources	get_resnames.c	/^get_resources(Widget w, ALLLIST *resources, Cardinal *no_resources)$/;"	f
+get_selected_resource	selected.c	/^get_selected_resource(Widget w, XtPointer call_data)$/;"	f
+get_siblings	special.c	/^get_siblings(void *dummy, int *number)$/;"	f	file:
+get_special_resource	special.c	/^get_special_resource(char *name, char *value, int *enumlist, int *no_xmstrings)$/;"	f
+get_special_value	get_resvalue.c	/^get_special_value(Widget w, char *ptr, int *enumlist)$/;"	f	file:
+get_std_value	get_resvalue.c	/^get_std_value(Widget w, char *buf, char *ptr, int index)$/;"	f	file:
+get_widget_classname	data.c	/^get_widget_classname(Widget w)$/;"	f
+get_widgetclass	data.c	/^get_widgetclass(char *class)$/;"	f
+get_wstruct	data.c	/^get_wstruct()$/;"	f
+get_wtree_node	populate.c	/^get_wtree_node(Widget w)$/;"	f	file:
+get_xchildren	children.c	/^get_xchildren(Widget widget, int *no_allkids)$/;"	f
+global_button	ResourceEd.c	/^Widget  global_button;    $/;"	v
+handle_complex	instant.c	/^handle_complex(Widget parent, Widget icon)$/;"	f	file:
+height	mhandlers.c	/^static int height = 0;$/;"	v	file:
+help_callback	menu.c	/^help_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+hide_pallet	Pallet.c	/^hide_pallet()$/;"	f
+hide_resed_editor	ResourceEd.c	/^hide_resed_editor()$/;"	f
+icon_callback	Pallet.c	/^icon_callback(Widget icon, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+id_resource	id_resource.c	/^id_resource(char *ptr, int *enumlist, int *index)$/;"	f
+init_resource_editor	ResourceEd.c	/^init_resource_editor(Widget w)$/;"	f
+init_select_stuff	select.c	/^init_select_stuff(Widget w)$/;"	f
+init_widget	create_simple.c	/^init_widget(Widget parent, WSTRUCT *ptr, WidgetClass wclass, Arg args[], int *n)$/;"	f	file:
+install_select_handlers	mhandlers.c	/^install_select_handlers(Widget w)$/;"	f
+instantiate_widget	create_simple.c	/^instantiate_widget(Widget parent, XtPointer data)$/;"	f
+leave_handler	select.c	/^leave_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+local_button	ResourceEd.c	/^Widget  local_button;    $/;"	v
+main	lxb.c	/^main(int argc, char **argv)$/;"	f
+make_about_xmstring	about.c	/^make_about_xmstring()$/;"	f	file:
+make_appcfile	code.c	/^make_appcfile(char *appname)$/;"	f	file:
+make_appdefs	code_xdefs.c	/^make_appdefs(char *appname)$/;"	f
+make_appheader	code.c	/^make_appheader(char *appname)$/;"	f	file:
+make_appshell	TopShell.c	/^make_appshell()$/;"	f
+make_callfile	code.c	/^make_callfile(char *appname)$/;"	f	file:
+make_callheader	code.c	/^make_callheader(char *appname)$/;"	f	file:
+make_childwidget	play.c	/^make_childwidget(WSTRUCT *wptr)$/;"	f	file:
+make_icon	Pallet.c	/^make_icon(Widget parent, char *name, String label, XtCallbackProc callback, XtPointer client_data)$/;"	f	file:
+make_makefile	code.c	/^make_makefile(char *appname)$/;"	f	file:
+make_new_appshell	recreate.c	/^make_new_appshell(WSTRUCT *wptr, Arg args[], int i)$/;"	f	file:
+make_utilhdrfile	code_util.c	/^make_utilhdrfile(char *appname)$/;"	f
+make_utilsrcfile	code_util.c	/^make_utilsrcfile(char *appname)$/;"	f
+make_widget	recreate.c	/^make_widget(WSTRUCT *wptr)$/;"	f	file:
+menubar	menu.c	/^static Widget menubar;$/;"	v	file:
+menubar_cascade_button	cascade.c	/^menubar_cascade_button(Widget parent)$/;"	f	file:
+menubar_pulldown	pulldown.c	/^menubar_pulldown(Widget menushell)$/;"	f
+modify_callback	TextObject.c	/^modify_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+move_cursor	select.c	/^static Cursor move_cursor;$/;"	v	file:
+move_handler	mhandlers.c	/^move_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+msg_area	top.c	/^static Widget msg_area;$/;"	v	file:
+name_list	ResourceEd.c	/^Widget  name_list;$/;"	v
+new_callback	dialogs.c	/^new_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+new_dialog	dialogs.c	/^static Widget new_dialog = NULL;$/;"	v	file:
+new_text_object	TextObject.c	/^new_text_object(Widget parent, Position x, Position y, char *label, int label_width, $/;"	f
+next	populate.c	/^	struct _tstruct *next;$/;"	m	struct:_tstruct	typeref:struct:_tstruct::_tstruct	file:
+no_xmstrings	code_special.c	/^static int no_xmstrings = 0;$/;"	v	file:
+node_callback	populate.c	/^node_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+noop	translations.c	/^noop(Widget w, XEvent *event, String *params, Cardinal *num_params)$/;"	f	file:
+number_colors	color.c	/^static int number_colors = 0;$/;"	v	file:
+ok	TextObject.c	/^	Widget ok;$/;"	m	struct:_textobj	file:
+ok_callback	ResourceEd.c	/^ok_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+ok_callback	TextObject.c	/^ok_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+open_callback	dialogs.c	/^open_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+open_colordbase	color.c	/^open_colordbase()$/;"	f	file:
+open_dialog	dialogs.c	/^static Widget open_dialog = NULL;$/;"	v	file:
+open_gui	open.c	/^open_gui()$/;"	f
+options_callback	menu.c	/^options_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+originx	mhandlers.c	/^static int originx = 0;$/;"	v	file:
+originy	mhandlers.c	/^static int originy = 0;$/;"	v	file:
+output_message	top.c	/^output_message(const char *fmt, ...)$/;"	f
+pallet_shell	Pallet.c	/^static Widget pallet_shell = NULL;$/;"	v	file:
+play_callback	dialogs.c	/^play_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+play_dialog	dialogs.c	/^static Widget play_dialog = NULL;$/;"	v	file:
+playshell	play.c	/^static Widget playshell = NULL;$/;"	v	file:
+pointerx	mhandlers.c	/^static int pointerx= 0;$/;"	v	file:
+pointery	mhandlers.c	/^static int pointery= 0;$/;"	v	file:
+populate_wtree	populate.c	/^populate_wtree()$/;"	f
+popup_about_dialog	about.c	/^popup_about_dialog()$/;"	f
+press_handler	mhandlers.c	/^press_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+pulldown_cascade_button	cascade.c	/^pulldown_cascade_button(Widget parent)$/;"	f	file:
+re_record_resource	recres.c	/^re_record_resource(WSTRUCT *ptr, char *resource_name, char *resource_value, int enumlist)$/;"	f
+read_callback_list	open.c	/^read_callback_list(WSTRUCT *wptr, int file)$/;"	f	file:
+read_resource_list	open.c	/^read_resource_list(WSTRUCT *wptr, int file)$/;"	f	file:
+record_callback	callbacks.c	/^record_callback(char *callback_type, char *callback_name)$/;"	f
+record_last_appshell_resources	TopShell.c	/^record_last_appshell_resources()$/;"	f
+record_new_callback	callbacks.c	/^record_new_callback(WSTRUCT *ptr, char *callback_type, char *callback_name)$/;"	f	file:
+record_resource	recres.c	/^record_resource(WSTRUCT *ptr, char *resource_name, char *resource_value, int enumlist)$/;"	f
+recreate_gui	recreate.c	/^recreate_gui()$/;"	f
+redisplay_resed_editor	ResourceEd.c	/^redisplay_resed_editor()$/;"	f
+redo_enum_value	cvt_resvalue.c	/^redo_enum_value(ArgList arg, char *ptr, char *resource_value, int enumlist)$/;"	f	file:
+redo_special_value	cvt_resvalue.c	/^redo_special_value(ArgList arg, char *ptr, char *resource_value, int enumlist)$/;"	f	file:
+redo_std_value	cvt_resvalue.c	/^redo_std_value(ArgList arg, char *ptr, char *resource_value, int index)$/;"	f	file:
+release_handler	mhandlers.c	/^release_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+relink	delete.c	/^relink(WSTRUCT *wptr)$/;"	f	file:
+remove_callback	callbacks.c	/^remove_callback(char *callback_type)$/;"	f
+remove_translations	translations.c	/^remove_translations(Widget w)$/;"	f
+res_callback	util.c	/^res_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f
+resed_displayed	ResourceEd.c	/^static Boolean resed_displayed = False; 	\/* indicates if it is currently popped up *\/$/;"	v	file:
+resize_handler	mhandlers.c	/^resize_handler(Widget w, XtPointer client_data, XEvent *event, Boolean *flag)$/;"	f	file:
+resource_name	ResourceEd.c	/^char *resource_name = "";				\/* selected resource from list *\/$/;"	v
+resource_type	ResourceEd.c	/^int	resource_type = RESOURCES;$/;"	v
+rootx	mhandlers.c	/^static int rootx= 0;$/;"	v	file:
+rooty	mhandlers.c	/^static int rooty= 0;$/;"	v	file:
+save_callback	dialogs.c	/^save_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+save_gui	save.c	/^save_gui(Boolean overwrite)$/;"	f
+save_tmp_gui	save.c	/^save_tmp_gui()$/;"	f
+save_tmpfile_timer	TopShell.c	/^save_tmpfile_timer(XtPointer client_data, XtIntervalId *id)$/;"	f	file:
+save_tmpfile_timer	recreate.c	/^save_tmpfile_timer(XtPointer client_data, XtIntervalId *id)$/;"	f	file:
+saveas_callback	dialogs.c	/^saveas_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+savefile_name	lxb.c	/^char 		*savefile_name		= NULL;$/;"	v
+scope_callback	ResourceEd.c	/^scope_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+select_widget	select.c	/^select_widget(Widget w)$/;"	f
+select_wtree_node	populate.c	/^select_wtree_node(Widget w)$/;"	f
+selected_widget	lxb.c	/^Widget 	selected_widget 	= NULL;   $/;"	v
+selection_callback	util.c	/^selection_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f
+set_callback	util.c	/^set_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f
+set_current_class	ResourceEd.c	/^set_current_class(Widget w)$/;"	f	file:
+set_current_name	ResourceEd.c	/^set_current_name(Widget w)$/;"	f	file:
+set_enum_value	set_resvalue.c	/^set_enum_value(Widget w, char *ptr, char *resource_value, int enumlist)$/;"	f	file:
+set_resource_value	set_resvalue.c	/^set_resource_value(char *resource_name, char *resource_value)$/;"	f
+set_selected_resource	selected.c	/^set_selected_resource(Widget w)$/;"	f
+set_special_value	set_resvalue.c	/^set_special_value(Widget w, char *ptr, char *resource_value, int enumlist)$/;"	f	file:
+set_std_value	set_resvalue.c	/^set_std_value(Widget w, char *ptr, char *resource_value, int index, int enumlist)$/;"	f	file:
+set_textstring	TextObject.c	/^set_textstring(Widget w, char *txt)$/;"	f
+set_widget_scope	ResourceEd.c	/^set_widget_scope(Widget w)$/;"	f	file:
+shell	lxb.c	/^Widget 	shell 						= NULL;$/;"	v
+show_allnodes_unselected	populate.c	/^show_allnodes_unselected()$/;"	f	file:
+show_callbacks	show_res.c	/^show_callbacks()$/;"	f
+show_constraints	show_res.c	/^show_constraints()$/;"	f
+show_enums_list	show_options.c	/^show_enums_list(char *name, char *value, int *enumlist)$/;"	f	file:
+show_node_selected	populate.c	/^show_node_selected(Widget w)$/;"	f	file:
+show_options	show_options.c	/^show_options(char *resource_name, char *resource_value, int *enumlist)$/;"	f
+show_pallet	Pallet.c	/^show_pallet()$/;"	f
+show_playgui	play.c	/^show_playgui()$/;"	f
+show_resource_editor	ResourceEd.c	/^show_resource_editor(Widget w)$/;"	f
+show_resources	show_res.c	/^show_resources()$/;"	f
+show_special_list	show_options.c	/^show_special_list(char *name, char *value, int *enumlist)$/;"	f	file:
+textF_4	CallbackEd.c	/^static Widget textF_4;$/;"	v	file:
+textF_5	CallbackEd.c	/^static Widget textF_5;$/;"	v	file:
+text_widget	TextObject.c	/^	Widget text_widget;$/;"	m	struct:_textobj	file:
+top_ptr	lxb.c	/^WSTRUCT *top_ptr 					= NULL;				\/* top of linked list *\/$/;"	v
+translations	translations.c	/^static char translations[] =$/;"	v	file:
+tree	Wtree.c	/^Widget tree;$/;"	v
+tree_ptr	lxb.c	/^WSTRUCT *tree_ptr 				= NULL;					\/* bottom of linked list *\/$/;"	v
+tree_top	populate.c	/^static TSTRUCT *tree_top = NULL;$/;"	v	file:
+treenode	populate.c	/^	Widget treenode;$/;"	m	struct:_tstruct	file:
+treenode_parent	populate.c	/^	Widget treenode_parent;$/;"	m	struct:_tstruct	file:
+tsc	populate.c	/^static Pixel tsc;												\/* unselected top shadow color *\/$/;"	v	file:
+txt	TextObject.c	/^	char *txt;$/;"	m	struct:_textobj	file:
+uninstall_select_handlers	mhandlers.c	/^uninstall_select_handlers(Widget w)$/;"	f
+unselect	select.c	/^unselect(Widget w)$/;"	f
+unselect_wtree_node	populate.c	/^unselect_wtree_node()$/;"	f
+user_proc	TextObject.c	/^	UserProc user_proc;$/;"	m	struct:_textobj	file:
+value_list	ResourceEd.c	/^Widget  value_list;$/;"	v
+value_text	ResourceEd.c	/^Widget  value_text;$/;"	v
+values_selection_callback	util.c	/^values_selection_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f
+verbose	lxb.c	/^int 		verbose 					= 0;$/;"	v
+version	lxb.c	/^char 		*version 					= LXB_VERSION; $/;"	v
+widget_instance	data.c	/^widget_instance(char *name)$/;"	f
+widget_name	data.c	/^widget_name(Widget w)$/;"	f
+widget_ptr	data.c	/^widget_ptr(Widget w)$/;"	f
+width	mhandlers.c	/^static int width = 0;$/;"	v	file:
+windows_callback	menu.c	/^windows_callback(Widget w, XtPointer client_data, XtPointer call_data)$/;"	f	file:
+write_callbacks	save.c	/^write_callbacks(WSTRUCT *wptr, int file) $/;"	f	file:
+write_resources	save.c	/^write_resources(WSTRUCT *wptr, int file) $/;"	f	file:

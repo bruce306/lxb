@@ -1,0 +1,47 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!	File: Lxb
+!
+!	Application defaults for program lxb. 
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!	program defaults
+!
+Lxb*background:										gray
+Lxb*XmText.translations:     			#override\n     <Key>osfDelete: delete-previous-character()
+Lxb*XmTextField.translations:     #override\n     <Key>osfDelete: delete-previous-character()
+!
+!	Main GUI window
+!
+Lxb.geometry:													+270+0
+
+Lxb.width:	100
+Lxb.height:	100
+
+Lxb*main_window*msg_area.background:	white
+!
+! Widget hierarchy display 
+Lxb*wtree.width:											410
+Lxb*wtree.height:											325
+Lxb*wtree*tree*background:						SlateGray
+Lxb*wtree*tree*foreground:						white
+Lxb*wtree*panner*shadowThickness:			1
+Lxb*wtree*panner*background:					SlateGray
+! Lxb*wtree*tree*fontList: 							-adobe-times-bold-r-normal-*-12-*-*-*-*-*-iso8859-1
+!
+! Widget Pallet
+!
+Lxb*pallet_shell.geometry:			230x490+0+115
+! Lxb*pallet_shell*XmLabel*fontList: -adobe-times-bold-r-normal-*-14-*-*-*-*-*-iso8859-1
+!
+!	Resource Editor
+!
+Lxb*editor_shell.geometry:        	+725+0
+! Lxb*editor_shell*XmLabel.fontList: 	-adobe-times-bold-r-normal-*-14-*-*-*-*-*-iso8859-1
+!
+!	Application being built
+!
+Lxb.topLevelShell.geometry:					260x385+325+470
+Lxb.topLevelShell*translations:				<Key>:	noop()
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

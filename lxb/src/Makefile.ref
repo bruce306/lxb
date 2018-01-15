@@ -1,0 +1,2766 @@
+#
+# File: Makefile.linux
+#
+#		Makefile used to make lxb for the Linux O/S
+#		Modified for Ubunto and new disposition of X 12/20/17
+#
+#---------------------------------------------------------------------------
+
+#  change these to point to the build direcories for lxb and misc X source
+#
+HOME = /home/lxb
+XDIR = /home/lxb/lxb/oldX11
+
+CC=gcc
+CDEBUGFLAGS = -g -ggdb
+
+CFLAGS = $(CDEBUGFLAGS) $(INCLUDES) $(DEFINES)
+LDFLAGS = -o
+
+DEFINES =
+
+INCLUDES = -I../include -I$(HOME)/lxb/oldX11/include -I/usr/include/x86_64-linux-gnu -I/usr/include/x86_64-linux-gnu/gnu -I/usr/lib/gcc/x86_64-linux-gnu/5/include
+
+#
+#  use my built and installed Motif library - Ubuntu v16 12/23/17
+#
+#    -the libs exist but not the header files for all X11
+#    - built and installed the latest Motif libs from Sourceforge
+#    - did a make install on the src dir; installed in /usr/lib
+#    - don't know why but the Motif Library has to be included first or
+#      you get a bad window error
+#
+XLIBS = -lXm -lX11 -lXmu -lXt -lXaw
+
+LIBS = $(XLIBS)
+
+#---------------------------------------------------------------------------
+OBJS = about.o cascade.o cfunctions.o children.o cmenu.o \
+	code.o code_gui.o code_hdr.o code_special.o code_util.o  code_xdefs.o \
+	color.o create_composite.o create_simple.o cscrolled.o cvt_resvalue.o \
+	data.o delete.o diag.o dialogs.o dump.o end_program.o fonts.o forms.o \
+	get_resnames.o get_resvalue.o id_resource.o instant.o lxb.o menu.o \
+	menubar.o menushell.o mhandlers.o misc.o open.o play.o populate.o 	\
+	pulldown.o recreate.o recres.o save.o select.o selected.o set_resvalue.o \
+	show_options.o show_res.o special.o top.o translations.o util.o \
+	ResourceEd.o Wtree.o TextObject.o Pallet.o TopShell.o CallbackEd.o callbacks.o
+#---------------------------------------------------------------------------
+
+lxb: $(OBJS) 
+	$(CC) $(LDFLAGS) lxb $(OBJS) $(LIBS) 
+
+relink:
+	rm -f lxb
+	$(CC) $(LDFLAGS) lxb $(OBJS) $(LIBS)
+
+all: clean depend lxb
+
+#all: clean lxb
+
+clean:
+	rm -f lxb *.o *.a 
+
+ctags:	
+	ctags *.c
+
+depend:	
+	makedepend $(INCLUDES) $(DEFINES) *.c
+
+
+# DO NOT DELETE
+
+CallbackEd.o: /usr/include/stdio.h /usr/include/features.h
+CallbackEd.o: /usr/include/stdc-predef.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+CallbackEd.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/types.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+CallbackEd.o: /usr/include/libio.h /usr/include/_G_config.h
+CallbackEd.o: /usr/include/wchar.h
+CallbackEd.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+CallbackEd.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+CallbackEd.o: /usr/include/X11/Xlib.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+CallbackEd.o: /usr/include/endian.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/sys/select.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/select.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/time.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+CallbackEd.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+CallbackEd.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+CallbackEd.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+CallbackEd.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+CallbackEd.o: /usr/include/X11/Xresource.h /usr/include/string.h
+CallbackEd.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+CallbackEd.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+CallbackEd.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+CallbackEd.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+CallbackEd.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+CallbackEd.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+CallbackEd.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+CallbackEd.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+CallbackEd.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+CallbackEd.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+CallbackEd.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+CallbackEd.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+CallbackEd.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+CallbackEd.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+CallbackEd.o: /usr/include/X11/Xmd.h /usr/include/Xm/PushB.h
+CallbackEd.o: /usr/include/Xm/Separator.h /usr/include/Xm/Label.h
+CallbackEd.o: /usr/include/Xm/TextF.h /usr/include/Xm/DrawingA.h
+CallbackEd.o: ../include/lxb.h ../include/color.h ../include/CallbackEd.h
+CallbackEd.o: ../include/callbacks.h
+Pallet.o: /usr/include/stdio.h /usr/include/features.h
+Pallet.o: /usr/include/stdc-predef.h
+Pallet.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+Pallet.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+Pallet.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/types.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+Pallet.o: /usr/include/_G_config.h /usr/include/wchar.h
+Pallet.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+Pallet.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+Pallet.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+Pallet.o: /usr/include/time.h /usr/include/endian.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+Pallet.o: /usr/include/x86_64-linux-gnu/sys/select.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/select.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/time.h
+Pallet.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+Pallet.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+Pallet.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+Pallet.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+Pallet.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+Pallet.o: /usr/include/X11/Xresource.h /usr/include/string.h
+Pallet.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+Pallet.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+Pallet.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+Pallet.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+Pallet.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+Pallet.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+Pallet.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+Pallet.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+Pallet.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+Pallet.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+Pallet.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+Pallet.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+Pallet.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+Pallet.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+Pallet.o: /usr/include/X11/Xmd.h /usr/include/Xm/PushB.h
+Pallet.o: /usr/include/Xm/MenuShell.h /usr/include/Xm/ToggleB.h
+Pallet.o: /usr/include/Xm/Separator.h /usr/include/Xm/DrawnB.h
+Pallet.o: /usr/include/Xm/Frame.h /usr/include/Xm/Form.h
+Pallet.o: /usr/include/Xm/BulletinB.h /usr/include/Xm/RowColumn.h
+Pallet.o: /usr/include/Xm/Label.h /usr/include/Xm/Text.h
+Pallet.o: /usr/include/Xm/TextF.h /usr/include/Xm/DrawingA.h
+Pallet.o: /usr/include/Xm/Scale.h /usr/include/Xm/ArrowB.h
+Pallet.o: /usr/include/Xm/CascadeB.h /usr/include/Xm/ScrolledW.h
+Pallet.o: /usr/include/Xm/ScrollBar.h /usr/include/Xm/List.h ../include/lxb.h
+Pallet.o: ../include/forms.h ../include/instant.h ../include/Pallet.h
+ResourceEd.o: /usr/include/stdio.h /usr/include/features.h
+ResourceEd.o: /usr/include/stdc-predef.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+ResourceEd.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/types.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+ResourceEd.o: /usr/include/libio.h /usr/include/_G_config.h
+ResourceEd.o: /usr/include/wchar.h
+ResourceEd.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+ResourceEd.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+ResourceEd.o: /usr/include/X11/Xlib.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+ResourceEd.o: /usr/include/endian.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/sys/select.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/select.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/time.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+ResourceEd.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+ResourceEd.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+ResourceEd.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+ResourceEd.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+ResourceEd.o: /usr/include/X11/Xresource.h /usr/include/string.h
+ResourceEd.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+ResourceEd.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+ResourceEd.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+ResourceEd.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+ResourceEd.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+ResourceEd.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+ResourceEd.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+ResourceEd.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+ResourceEd.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+ResourceEd.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+ResourceEd.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+ResourceEd.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+ResourceEd.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+ResourceEd.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+ResourceEd.o: /usr/include/X11/Xmd.h
+ResourceEd.o: /home/lxb/lxb/oldX11/include/X11/Xmu/Editres.h
+ResourceEd.o: /usr/include/Xm/Frame.h /usr/include/Xm/RowColumn.h
+ResourceEd.o: /usr/include/Xm/Separator.h /usr/include/Xm/List.h
+ResourceEd.o: /usr/include/Xm/Form.h /usr/include/Xm/BulletinB.h
+ResourceEd.o: /usr/include/Xm/DrawingA.h /usr/include/Xm/Text.h
+ResourceEd.o: /usr/include/Xm/TextF.h /usr/include/Xm/ToggleB.h
+ResourceEd.o: /usr/include/Xm/PushB.h /usr/include/Xm/Label.h
+ResourceEd.o: ../include/lxb.h ../include/forms.h ../include/util.h
+ResourceEd.o: ../include/data.h ../include/selected.h ../include/show_res.h
+ResourceEd.o: ../include/TextObject.h ../include/populate.h
+ResourceEd.o: ../include/select.h ../include/ResourceEd.h
+TextObject.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+TextObject.o: /usr/include/X11/Xlib.h
+TextObject.o: /usr/include/x86_64-linux-gnu/sys/types.h
+TextObject.o: /usr/include/features.h /usr/include/stdc-predef.h
+TextObject.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+TextObject.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/types.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+TextObject.o: /usr/include/time.h
+TextObject.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+TextObject.o: /usr/include/endian.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+TextObject.o: /usr/include/x86_64-linux-gnu/sys/select.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/select.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/time.h
+TextObject.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+TextObject.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+TextObject.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+TextObject.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+TextObject.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+TextObject.o: /usr/include/X11/Xresource.h /usr/include/string.h
+TextObject.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+TextObject.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+TextObject.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+TextObject.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+TextObject.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+TextObject.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+TextObject.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+TextObject.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+TextObject.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+TextObject.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+TextObject.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+TextObject.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+TextObject.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+TextObject.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h
+TextObject.o: /usr/include/Xm/RowColumn.h /usr/include/Xm/DrawingA.h
+TextObject.o: /usr/include/Xm/TextF.h /usr/include/Xm/Label.h
+TextObject.o: ../include/TextObject.h
+TopShell.o: /usr/include/stdio.h /usr/include/features.h
+TopShell.o: /usr/include/stdc-predef.h
+TopShell.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+TopShell.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+TopShell.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/types.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+TopShell.o: /usr/include/libio.h /usr/include/_G_config.h
+TopShell.o: /usr/include/wchar.h
+TopShell.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+TopShell.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+TopShell.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+TopShell.o: /usr/include/time.h /usr/include/endian.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+TopShell.o: /usr/include/x86_64-linux-gnu/sys/select.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/select.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/time.h
+TopShell.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+TopShell.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+TopShell.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+TopShell.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+TopShell.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+TopShell.o: /usr/include/X11/Xresource.h /usr/include/string.h
+TopShell.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+TopShell.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+TopShell.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+TopShell.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+TopShell.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+TopShell.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+TopShell.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+TopShell.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+TopShell.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+TopShell.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+TopShell.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+TopShell.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+TopShell.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+TopShell.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+TopShell.o: /usr/include/X11/Xmd.h
+TopShell.o: /home/lxb/lxb/oldX11/include/X11/Xmu/Editres.h ../include/lxb.h
+TopShell.o: ../include/data.h ../include/color.h ../include/mhandlers.h
+TopShell.o: ../include/recres.h ../include/end_program.h ../include/save.h
+TopShell.o: ../include/TopShell.h
+Wtree.o: /usr/include/stdio.h /usr/include/features.h
+Wtree.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+Wtree.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+Wtree.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/types.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+Wtree.o: /usr/include/_G_config.h /usr/include/wchar.h
+Wtree.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+Wtree.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+Wtree.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+Wtree.o: /usr/include/time.h /usr/include/endian.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+Wtree.o: /usr/include/x86_64-linux-gnu/sys/select.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/select.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/time.h
+Wtree.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+Wtree.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+Wtree.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+Wtree.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+Wtree.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+Wtree.o: /usr/include/X11/Xresource.h /usr/include/string.h
+Wtree.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+Wtree.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+Wtree.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+Wtree.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+Wtree.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+Wtree.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+Wtree.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+Wtree.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+Wtree.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+Wtree.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+Wtree.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+Wtree.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+Wtree.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+Wtree.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+Wtree.o: /usr/include/X11/Xmd.h /usr/include/Xm/Frame.h
+Wtree.o: /usr/include/Xm/Form.h /usr/include/Xm/BulletinB.h
+Wtree.o: /usr/include/Xm/PushB.h
+Wtree.o: /home/lxb/lxb/oldX11/include/X11/Xmu/Editres.h
+Wtree.o: /home/lxb/lxb/oldX11/include/X11/Xaw/Tree.h
+Wtree.o: /home/lxb/lxb/oldX11/include/X11/Xmu/Converters.h
+Wtree.o: /home/lxb/lxb/oldX11/include/X11/Xaw/Panner.h
+Wtree.o: /home/lxb/lxb/oldX11/include/X11/Xaw/Reports.h
+Wtree.o: /home/lxb/lxb/oldX11/include/X11/Xaw/Porthole.h ../include/lxb.h
+Wtree.o: ../include/Wtree.h
+about.o: /usr/include/stdio.h /usr/include/features.h
+about.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+about.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+about.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+about.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+about.o: /usr/include/x86_64-linux-gnu/bits/types.h
+about.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+about.o: /usr/include/_G_config.h /usr/include/wchar.h
+about.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+about.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+about.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+about.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+about.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+about.o: /usr/include/time.h /usr/include/endian.h
+about.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+about.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+about.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+about.o: /usr/include/x86_64-linux-gnu/sys/select.h
+about.o: /usr/include/x86_64-linux-gnu/bits/select.h
+about.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+about.o: /usr/include/x86_64-linux-gnu/bits/time.h
+about.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+about.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+about.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+about.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+about.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+about.o: /usr/include/X11/Xresource.h /usr/include/string.h
+about.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+about.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+about.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+about.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+about.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+about.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+about.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+about.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+about.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+about.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+about.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+about.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+about.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+about.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+about.o: /usr/include/X11/Xmd.h /usr/include/Xm/PushB.h
+about.o: /usr/include/Xm/BulletinB.h /usr/include/Xm/Frame.h
+about.o: /usr/include/Xm/Label.h /usr/include/Xm/DrawingA.h ../include/lxb.h
+about.o: ../include/version.h ../include/fonts.h ../include/color.h
+about.o: ../include/about.h
+callbacks.o: /usr/include/stdio.h /usr/include/features.h
+callbacks.o: /usr/include/stdc-predef.h
+callbacks.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+callbacks.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+callbacks.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/types.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+callbacks.o: /usr/include/libio.h /usr/include/_G_config.h
+callbacks.o: /usr/include/wchar.h
+callbacks.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+callbacks.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+callbacks.o: /usr/include/X11/Xlib.h
+callbacks.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+callbacks.o: /usr/include/endian.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+callbacks.o: /usr/include/x86_64-linux-gnu/sys/select.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/select.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/time.h
+callbacks.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+callbacks.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+callbacks.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+callbacks.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+callbacks.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+callbacks.o: /usr/include/X11/Xresource.h /usr/include/string.h
+callbacks.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+callbacks.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+callbacks.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+callbacks.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+callbacks.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+callbacks.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+callbacks.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+callbacks.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+callbacks.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+callbacks.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+callbacks.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+callbacks.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+callbacks.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+callbacks.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/data.h
+callbacks.o: ../include/callbacks.h
+cascade.o: /usr/include/stdio.h /usr/include/features.h
+cascade.o: /usr/include/stdc-predef.h
+cascade.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+cascade.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+cascade.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/types.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+cascade.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+cascade.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+cascade.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+cascade.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+cascade.o: /usr/include/time.h /usr/include/endian.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+cascade.o: /usr/include/x86_64-linux-gnu/sys/select.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/select.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/time.h
+cascade.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+cascade.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+cascade.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+cascade.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+cascade.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+cascade.o: /usr/include/X11/Xresource.h /usr/include/string.h
+cascade.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+cascade.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+cascade.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+cascade.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+cascade.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+cascade.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+cascade.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+cascade.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+cascade.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+cascade.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+cascade.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+cascade.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+cascade.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+cascade.o: /usr/include/Xm/XmIm.h /usr/include/Xm/CascadeB.h ../include/lxb.h
+cascade.o: ../include/data.h ../include/select.h ../include/mhandlers.h
+cascade.o: ../include/recres.h ../include/populate.h ../include/delete.h
+cascade.o: ../include/menushell.h ../include/pulldown.h ../include/cascade.h
+cfunctions.o: /usr/include/stdio.h /usr/include/features.h
+cfunctions.o: /usr/include/stdc-predef.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+cfunctions.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/types.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+cfunctions.o: /usr/include/libio.h /usr/include/_G_config.h
+cfunctions.o: /usr/include/wchar.h
+cfunctions.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+cfunctions.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+cfunctions.o: /usr/include/X11/Xlib.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+cfunctions.o: /usr/include/endian.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/sys/select.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/select.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/time.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+cfunctions.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+cfunctions.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+cfunctions.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+cfunctions.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+cfunctions.o: /usr/include/X11/Xresource.h /usr/include/string.h
+cfunctions.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+cfunctions.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+cfunctions.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+cfunctions.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+cfunctions.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+cfunctions.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+cfunctions.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+cfunctions.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+cfunctions.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+cfunctions.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+cfunctions.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+cfunctions.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+cfunctions.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+cfunctions.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MenuShell.h
+cfunctions.o: /usr/include/Xm/ScrolledW.h /usr/include/Xm/List.h
+cfunctions.o: /usr/include/Xm/Text.h ../include/lxb.h ../include/cfunctions.h
+children.o: /usr/include/stdio.h /usr/include/features.h
+children.o: /usr/include/stdc-predef.h
+children.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+children.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+children.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+children.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+children.o: /usr/include/x86_64-linux-gnu/bits/types.h
+children.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+children.o: /usr/include/libio.h /usr/include/_G_config.h
+children.o: /usr/include/wchar.h
+children.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+children.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+children.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+children.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+children.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+children.o: /usr/include/time.h /usr/include/endian.h
+children.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+children.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+children.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+children.o: /usr/include/x86_64-linux-gnu/sys/select.h
+children.o: /usr/include/x86_64-linux-gnu/bits/select.h
+children.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+children.o: /usr/include/x86_64-linux-gnu/bits/time.h
+children.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+children.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+children.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+children.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+children.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+children.o: /usr/include/X11/Xresource.h /usr/include/string.h
+children.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+children.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+children.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+children.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+children.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+children.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+children.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+children.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+children.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+children.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+children.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+children.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+children.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+children.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/children.h
+children.o: ../include/data.h
+cmenu.o: /usr/include/stdio.h /usr/include/features.h
+cmenu.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+cmenu.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+cmenu.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/types.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+cmenu.o: /usr/include/_G_config.h /usr/include/wchar.h
+cmenu.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+cmenu.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+cmenu.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+cmenu.o: /usr/include/time.h /usr/include/endian.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+cmenu.o: /usr/include/x86_64-linux-gnu/sys/select.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/select.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/time.h
+cmenu.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+cmenu.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+cmenu.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+cmenu.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+cmenu.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+cmenu.o: /usr/include/X11/Xresource.h /usr/include/string.h
+cmenu.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+cmenu.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+cmenu.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+cmenu.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+cmenu.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+cmenu.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+cmenu.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+cmenu.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+cmenu.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+cmenu.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+cmenu.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+cmenu.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+cmenu.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+cmenu.o: /usr/include/Xm/XmIm.h /usr/include/Xm/RowColumn.h
+cmenu.o: /usr/include/Xm/CascadeB.h ../include/lxb.h ../include/data.h
+cmenu.o: ../include/populate.h ../include/select.h ../include/pulldown.h
+cmenu.o: ../include/menubar.h ../include/cascade.h ../include/cmenu.h
+code.o: /usr/include/stdio.h /usr/include/features.h
+code.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+code.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+code.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+code.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+code.o: /usr/include/x86_64-linux-gnu/bits/types.h
+code.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+code.o: /usr/include/_G_config.h /usr/include/wchar.h
+code.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+code.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+code.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+code.o: /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h
+code.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h
+code.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+code.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+code.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+code.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+code.o: /usr/include/x86_64-linux-gnu/sys/select.h
+code.o: /usr/include/x86_64-linux-gnu/bits/select.h
+code.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+code.o: /usr/include/x86_64-linux-gnu/bits/time.h
+code.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+code.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+code.o: /usr/include/alloca.h
+code.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+code.o: /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h
+code.o: /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+code.o: /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/unistd.h
+code.o: /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+code.o: /usr/include/x86_64-linux-gnu/bits/environments.h
+code.o: /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h
+code.o: /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h
+code.o: /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h
+code.o: /usr/include/asm-generic/errno.h
+code.o: /usr/include/asm-generic/errno-base.h /usr/include/strings.h
+code.o: /usr/include/xlocale.h /usr/include/Xm/Xm.h
+code.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+code.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+code.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+code.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+code.o: /usr/include/X11/Xresource.h /usr/include/string.h
+code.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+code.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+code.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+code.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+code.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+code.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+code.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+code.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+code.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+code.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+code.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+code.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+code.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h ../include/lxb.h
+code.o: ../include/top.h ../include/code_util.h ../include/code_gui.h
+code.o: ../include/code_xdefs.h ../include/code_hdr.h
+code.o: ../include/code_special.h ../include/code.h
+code_gui.o: /usr/include/stdio.h /usr/include/features.h
+code_gui.o: /usr/include/stdc-predef.h
+code_gui.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+code_gui.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+code_gui.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/types.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+code_gui.o: /usr/include/libio.h /usr/include/_G_config.h
+code_gui.o: /usr/include/wchar.h
+code_gui.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+code_gui.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+code_gui.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+code_gui.o: /usr/include/time.h /usr/include/endian.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+code_gui.o: /usr/include/x86_64-linux-gnu/sys/select.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/select.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/time.h
+code_gui.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+code_gui.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+code_gui.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+code_gui.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+code_gui.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+code_gui.o: /usr/include/X11/Xresource.h /usr/include/string.h
+code_gui.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+code_gui.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+code_gui.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+code_gui.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+code_gui.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+code_gui.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+code_gui.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+code_gui.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+code_gui.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+code_gui.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+code_gui.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+code_gui.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+code_gui.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+code_gui.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/data.h
+code_gui.o: ../include/code_special.h ../include/code_gui.h
+code_hdr.o: /usr/include/stdio.h /usr/include/features.h
+code_hdr.o: /usr/include/stdc-predef.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+code_hdr.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/types.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+code_hdr.o: /usr/include/libio.h /usr/include/_G_config.h
+code_hdr.o: /usr/include/wchar.h
+code_hdr.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+code_hdr.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+code_hdr.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+code_hdr.o: /usr/include/time.h /usr/include/endian.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/sys/select.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/select.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/time.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+code_hdr.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+code_hdr.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+code_hdr.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+code_hdr.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+code_hdr.o: /usr/include/X11/Xresource.h /usr/include/string.h
+code_hdr.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+code_hdr.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+code_hdr.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+code_hdr.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+code_hdr.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+code_hdr.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+code_hdr.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+code_hdr.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+code_hdr.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+code_hdr.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+code_hdr.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+code_hdr.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+code_hdr.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+code_hdr.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/code_hdr.h
+code_special.o: /usr/include/stdio.h /usr/include/features.h
+code_special.o: /usr/include/stdc-predef.h
+code_special.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+code_special.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+code_special.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/types.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+code_special.o: /usr/include/libio.h /usr/include/_G_config.h
+code_special.o: /usr/include/wchar.h
+code_special.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+code_special.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+code_special.o: /usr/include/X11/Xlib.h
+code_special.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+code_special.o: /usr/include/endian.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+code_special.o: /usr/include/x86_64-linux-gnu/sys/select.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/select.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/time.h
+code_special.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+code_special.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+code_special.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+code_special.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+code_special.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+code_special.o: /usr/include/X11/Xresource.h /usr/include/string.h
+code_special.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+code_special.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+code_special.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+code_special.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+code_special.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+code_special.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+code_special.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+code_special.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+code_special.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+code_special.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+code_special.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+code_special.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+code_special.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+code_special.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/code.h
+code_special.o: ../include/code_special.h
+code_util.o: /usr/include/stdio.h /usr/include/features.h
+code_util.o: /usr/include/stdc-predef.h
+code_util.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+code_util.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+code_util.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/types.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+code_util.o: /usr/include/libio.h /usr/include/_G_config.h
+code_util.o: /usr/include/wchar.h
+code_util.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+code_util.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+code_util.o: /usr/include/X11/Xlib.h
+code_util.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+code_util.o: /usr/include/endian.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+code_util.o: /usr/include/x86_64-linux-gnu/sys/select.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/select.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/time.h
+code_util.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+code_util.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+code_util.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+code_util.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+code_util.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+code_util.o: /usr/include/X11/Xresource.h /usr/include/string.h
+code_util.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+code_util.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+code_util.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+code_util.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+code_util.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+code_util.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+code_util.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+code_util.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+code_util.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+code_util.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+code_util.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+code_util.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+code_util.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+code_util.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/code.h
+code_util.o: ../include/code_util.h
+code_xdefs.o: /usr/include/stdio.h /usr/include/features.h
+code_xdefs.o: /usr/include/stdc-predef.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+code_xdefs.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/types.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+code_xdefs.o: /usr/include/libio.h /usr/include/_G_config.h
+code_xdefs.o: /usr/include/wchar.h
+code_xdefs.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+code_xdefs.o: /usr/include/stdlib.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h
+code_xdefs.o: /usr/include/endian.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/sys/select.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/select.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/time.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+code_xdefs.o: /usr/include/alloca.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+code_xdefs.o: /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/unistd.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/environments.h
+code_xdefs.o: /usr/include/x86_64-linux-gnu/bits/confname.h
+code_xdefs.o: /usr/include/getopt.h /usr/include/strings.h
+code_xdefs.o: /usr/include/xlocale.h /usr/include/Xm/Xm.h
+code_xdefs.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+code_xdefs.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+code_xdefs.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+code_xdefs.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+code_xdefs.o: /usr/include/X11/Xresource.h /usr/include/string.h
+code_xdefs.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+code_xdefs.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+code_xdefs.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+code_xdefs.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+code_xdefs.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+code_xdefs.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+code_xdefs.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+code_xdefs.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+code_xdefs.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+code_xdefs.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+code_xdefs.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+code_xdefs.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+code_xdefs.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+code_xdefs.o: ../include/lxb.h ../include/code_xdefs.h ../include/code.h
+color.o: /usr/include/stdio.h /usr/include/features.h
+color.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+color.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+color.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+color.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+color.o: /usr/include/x86_64-linux-gnu/bits/types.h
+color.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+color.o: /usr/include/_G_config.h /usr/include/wchar.h
+color.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+color.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+color.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+color.o: /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h
+color.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h
+color.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+color.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+color.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+color.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+color.o: /usr/include/x86_64-linux-gnu/sys/select.h
+color.o: /usr/include/x86_64-linux-gnu/bits/select.h
+color.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+color.o: /usr/include/x86_64-linux-gnu/bits/time.h
+color.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+color.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+color.o: /usr/include/alloca.h
+color.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+color.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+color.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+color.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+color.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+color.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+color.o: /usr/include/string.h /usr/include/xlocale.h /usr/include/X11/Core.h
+color.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+color.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+color.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+color.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+color.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+color.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+color.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+color.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+color.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+color.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+color.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+color.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+color.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/color.h
+color.o: ../include/top.h
+create_composite.o: /usr/include/stdio.h /usr/include/features.h
+create_composite.o: /usr/include/stdc-predef.h
+create_composite.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+create_composite.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+create_composite.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/types.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+create_composite.o: /usr/include/libio.h /usr/include/_G_config.h
+create_composite.o: /usr/include/wchar.h
+create_composite.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+create_composite.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+create_composite.o: /usr/include/X11/Xlib.h
+create_composite.o: /usr/include/x86_64-linux-gnu/sys/types.h
+create_composite.o: /usr/include/time.h /usr/include/endian.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+create_composite.o: /usr/include/x86_64-linux-gnu/sys/select.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/select.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/time.h
+create_composite.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+create_composite.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+create_composite.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+create_composite.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+create_composite.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+create_composite.o: /usr/include/X11/Xresource.h /usr/include/string.h
+create_composite.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+create_composite.o: /usr/include/X11/Composite.h
+create_composite.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+create_composite.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+create_composite.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+create_composite.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+create_composite.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+create_composite.o: /usr/include/X11/StringDefs.h
+create_composite.o: /usr/include/Xm/XmStrDefs22.h
+create_composite.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+create_composite.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+create_composite.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+create_composite.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+create_composite.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+create_composite.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+create_composite.o: /usr/include/Xm/Scale.h /usr/include/Xm/ScrolledW.h
+create_composite.o: ../include/lxb.h ../include/data.h ../include/mhandlers.h
+create_composite.o: ../include/end_program.h ../include/select.h
+create_composite.o: ../include/children.h ../include/recres.h
+create_composite.o: ../include/create_composite.h
+create_simple.o: /usr/include/stdio.h /usr/include/features.h
+create_simple.o: /usr/include/stdc-predef.h
+create_simple.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+create_simple.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+create_simple.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/types.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+create_simple.o: /usr/include/libio.h /usr/include/_G_config.h
+create_simple.o: /usr/include/wchar.h
+create_simple.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+create_simple.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+create_simple.o: /usr/include/X11/Xlib.h
+create_simple.o: /usr/include/x86_64-linux-gnu/sys/types.h
+create_simple.o: /usr/include/time.h /usr/include/endian.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+create_simple.o: /usr/include/x86_64-linux-gnu/sys/select.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/select.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/time.h
+create_simple.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+create_simple.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+create_simple.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+create_simple.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+create_simple.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+create_simple.o: /usr/include/X11/Xresource.h /usr/include/string.h
+create_simple.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+create_simple.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+create_simple.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+create_simple.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+create_simple.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+create_simple.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+create_simple.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+create_simple.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+create_simple.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+create_simple.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+create_simple.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+create_simple.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+create_simple.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+create_simple.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h
+create_simple.o: /usr/include/Xm/ToggleB.h /usr/include/Xm/ArrowB.h
+create_simple.o: /usr/include/Xm/Separator.h /usr/include/Xm/DrawnB.h
+create_simple.o: /usr/include/Xm/Scale.h /usr/include/Xm/Frame.h
+create_simple.o: /usr/include/Xm/Form.h /usr/include/Xm/BulletinB.h
+create_simple.o: /usr/include/Xm/RowColumn.h /usr/include/Xm/Label.h
+create_simple.o: /usr/include/Xm/TextF.h /usr/include/Xm/Text.h
+create_simple.o: /usr/include/Xm/DrawingA.h /usr/include/Xm/CascadeB.h
+create_simple.o: /usr/include/Xm/ScrolledW.h /usr/include/Xm/ScrollBar.h
+create_simple.o: /usr/include/Xm/List.h ../include/lxb.h ../include/data.h
+create_simple.o: ../include/mhandlers.h ../include/end_program.h
+create_simple.o: ../include/select.h ../include/children.h
+create_simple.o: ../include/recres.h ../include/create_simple.h
+cscrolled.o: /usr/include/stdio.h /usr/include/features.h
+cscrolled.o: /usr/include/stdc-predef.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+cscrolled.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/types.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+cscrolled.o: /usr/include/libio.h /usr/include/_G_config.h
+cscrolled.o: /usr/include/wchar.h
+cscrolled.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+cscrolled.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+cscrolled.o: /usr/include/X11/Xlib.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+cscrolled.o: /usr/include/endian.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/sys/select.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/select.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/time.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+cscrolled.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+cscrolled.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+cscrolled.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+cscrolled.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+cscrolled.o: /usr/include/X11/Xresource.h /usr/include/string.h
+cscrolled.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+cscrolled.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+cscrolled.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+cscrolled.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+cscrolled.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+cscrolled.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+cscrolled.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+cscrolled.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+cscrolled.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+cscrolled.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+cscrolled.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+cscrolled.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+cscrolled.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+cscrolled.o: /usr/include/Xm/XmIm.h /usr/include/Xm/ScrolledW.h
+cscrolled.o: /usr/include/Xm/Text.h /usr/include/Xm/List.h ../include/lxb.h
+cscrolled.o: ../include/data.h ../include/select.h ../include/mhandlers.h
+cscrolled.o: ../include/recres.h ../include/cscrolled.h ../include/populate.h
+cvt_resvalue.o: /usr/include/stdio.h /usr/include/features.h
+cvt_resvalue.o: /usr/include/stdc-predef.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+cvt_resvalue.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/types.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+cvt_resvalue.o: /usr/include/libio.h /usr/include/_G_config.h
+cvt_resvalue.o: /usr/include/wchar.h
+cvt_resvalue.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+cvt_resvalue.o: /usr/include/stdlib.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h
+cvt_resvalue.o: /usr/include/endian.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/sys/select.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/select.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/time.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+cvt_resvalue.o: /usr/include/alloca.h
+cvt_resvalue.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+cvt_resvalue.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+cvt_resvalue.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+cvt_resvalue.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+cvt_resvalue.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+cvt_resvalue.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+cvt_resvalue.o: /usr/include/string.h /usr/include/xlocale.h
+cvt_resvalue.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+cvt_resvalue.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+cvt_resvalue.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+cvt_resvalue.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+cvt_resvalue.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+cvt_resvalue.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+cvt_resvalue.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+cvt_resvalue.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+cvt_resvalue.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+cvt_resvalue.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+cvt_resvalue.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+cvt_resvalue.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+cvt_resvalue.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+cvt_resvalue.o: ../include/lxb.h ../include/color.h ../include/fonts.h
+cvt_resvalue.o: ../include/data.h ../include/misc.h ../include/recres.h
+cvt_resvalue.o: ../include/id_resource.h ../include/set_resvalue.h
+cvt_resvalue.o: ../include/cvt_resvalue.h
+data.o: /usr/include/stdio.h /usr/include/features.h
+data.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+data.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+data.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+data.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+data.o: /usr/include/x86_64-linux-gnu/bits/types.h
+data.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+data.o: /usr/include/_G_config.h /usr/include/wchar.h
+data.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+data.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+data.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/Xm/Xm.h
+data.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+data.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+data.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+data.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+data.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+data.o: /usr/include/x86_64-linux-gnu/sys/select.h
+data.o: /usr/include/x86_64-linux-gnu/bits/select.h
+data.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+data.o: /usr/include/x86_64-linux-gnu/bits/time.h
+data.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+data.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+data.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+data.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+data.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+data.o: /usr/include/X11/Xresource.h /usr/include/string.h
+data.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+data.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+data.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+data.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+data.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+data.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+data.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+data.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+data.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+data.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+data.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+data.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+data.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+data.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h
+data.o: /usr/include/Xm/ToggleB.h /usr/include/Xm/ArrowB.h
+data.o: /usr/include/Xm/Separator.h /usr/include/Xm/DrawnB.h
+data.o: /usr/include/Xm/Scale.h /usr/include/Xm/Frame.h
+data.o: /usr/include/Xm/Form.h /usr/include/Xm/BulletinB.h
+data.o: /usr/include/Xm/RowColumn.h /usr/include/Xm/Label.h
+data.o: /usr/include/Xm/TextF.h /usr/include/Xm/Text.h
+data.o: /usr/include/Xm/DrawingA.h /usr/include/Xm/CascadeB.h
+data.o: /usr/include/Xm/MenuShell.h /usr/include/Xm/ScrolledW.h
+data.o: /usr/include/Xm/List.h /usr/include/Xm/ScrollBar.h ../include/lxb.h
+data.o: ../include/data.h
+delete.o: /usr/include/stdio.h /usr/include/features.h
+delete.o: /usr/include/stdc-predef.h
+delete.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+delete.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+delete.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/types.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+delete.o: /usr/include/_G_config.h /usr/include/wchar.h
+delete.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+delete.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+delete.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+delete.o: /usr/include/time.h /usr/include/endian.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+delete.o: /usr/include/x86_64-linux-gnu/sys/select.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/select.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/time.h
+delete.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+delete.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+delete.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+delete.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+delete.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+delete.o: /usr/include/X11/Xresource.h /usr/include/string.h
+delete.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+delete.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+delete.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+delete.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+delete.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+delete.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+delete.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+delete.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+delete.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+delete.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+delete.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+delete.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+delete.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+delete.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/select.h
+delete.o: ../include/data.h ../include/children.h ../include/delete.h
+diag.o: /usr/include/stdio.h /usr/include/features.h
+diag.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+diag.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+diag.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/types.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+diag.o: /usr/include/_G_config.h /usr/include/wchar.h
+diag.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/Xm/Xm.h
+diag.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+diag.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+diag.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+diag.o: /usr/include/x86_64-linux-gnu/sys/select.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/select.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/time.h
+diag.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+diag.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+diag.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+diag.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+diag.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+diag.o: /usr/include/X11/Xresource.h /usr/include/string.h
+diag.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+diag.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+diag.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+diag.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+diag.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+diag.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+diag.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+diag.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+diag.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+diag.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+diag.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+diag.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+diag.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+diag.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/data.h
+diag.o: ../include/diag.h
+dialogs.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+dialogs.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+dialogs.o: /usr/include/features.h /usr/include/stdc-predef.h
+dialogs.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+dialogs.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/types.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/time.h
+dialogs.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+dialogs.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+dialogs.o: /usr/include/x86_64-linux-gnu/sys/select.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/select.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/time.h
+dialogs.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+dialogs.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+dialogs.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+dialogs.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+dialogs.o: /usr/include/X11/Xresource.h /usr/include/string.h
+dialogs.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+dialogs.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+dialogs.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+dialogs.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+dialogs.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+dialogs.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+dialogs.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+dialogs.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+dialogs.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+dialogs.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+dialogs.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+dialogs.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+dialogs.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+dialogs.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MessageB.h
+dialogs.o: /usr/include/Xm/BulletinB.h /usr/include/Xm/SelectioB.h
+dialogs.o: /usr/include/Xm/Text.h /usr/include/stdio.h /usr/include/libio.h
+dialogs.o: /usr/include/_G_config.h /usr/include/wchar.h
+dialogs.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+dialogs.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+dialogs.o: /usr/include/Xm/TextF.h ../include/lxb.h ../include/save.h
+dialogs.o: ../include/open.h ../include/play.h ../include/recreate.h
+dialogs.o: ../include/delete.h ../include/ResourceEd.h ../include/about.h
+dialogs.o: ../include/populate.h ../include/dialogs.h ../include/Pallet.h
+dump.o: /usr/include/stdio.h /usr/include/features.h
+dump.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+dump.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+dump.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/types.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+dump.o: /usr/include/_G_config.h /usr/include/wchar.h
+dump.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/Xm/Xm.h
+dump.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+dump.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+dump.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+dump.o: /usr/include/x86_64-linux-gnu/sys/select.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/select.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/time.h
+dump.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+dump.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+dump.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+dump.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+dump.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+dump.o: /usr/include/X11/Xresource.h /usr/include/string.h
+dump.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+dump.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+dump.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+dump.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+dump.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+dump.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+dump.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+dump.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+dump.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+dump.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+dump.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+dump.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+dump.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+dump.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/data.h
+dump.o: ../include/dump.h
+end_program.o: /usr/include/stdio.h /usr/include/features.h
+end_program.o: /usr/include/stdc-predef.h
+end_program.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+end_program.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+end_program.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/types.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+end_program.o: /usr/include/libio.h /usr/include/_G_config.h
+end_program.o: /usr/include/wchar.h
+end_program.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+end_program.o: /usr/include/stdlib.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h
+end_program.o: /usr/include/endian.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+end_program.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+end_program.o: /usr/include/x86_64-linux-gnu/sys/select.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/select.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/time.h
+end_program.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+end_program.o: /usr/include/alloca.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+end_program.o: /usr/include/errno.h
+end_program.o: /usr/include/x86_64-linux-gnu/bits/errno.h
+end_program.o: /usr/include/linux/errno.h
+end_program.o: /usr/include/x86_64-linux-gnu/asm/errno.h
+end_program.o: /usr/include/asm-generic/errno.h
+end_program.o: /usr/include/asm-generic/errno-base.h ../include/end_program.h
+fonts.o: /usr/include/stdio.h /usr/include/features.h
+fonts.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+fonts.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+fonts.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/types.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+fonts.o: /usr/include/_G_config.h /usr/include/wchar.h
+fonts.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+fonts.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+fonts.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+fonts.o: /usr/include/time.h /usr/include/endian.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+fonts.o: /usr/include/x86_64-linux-gnu/sys/select.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/select.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/time.h
+fonts.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+fonts.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+fonts.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+fonts.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+fonts.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+fonts.o: /usr/include/X11/Xresource.h /usr/include/string.h
+fonts.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+fonts.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+fonts.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+fonts.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+fonts.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+fonts.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+fonts.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+fonts.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+fonts.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+fonts.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+fonts.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+fonts.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+fonts.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+fonts.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/fonts.h
+fonts.o: ../include/data.h
+forms.o: /usr/include/Xm/Form.h /usr/include/Xm/BulletinB.h
+forms.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+forms.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+forms.o: /usr/include/features.h /usr/include/stdc-predef.h
+forms.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+forms.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/types.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/time.h
+forms.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+forms.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+forms.o: /usr/include/x86_64-linux-gnu/sys/select.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/select.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/time.h
+forms.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+forms.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+forms.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+forms.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+forms.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+forms.o: /usr/include/X11/Xresource.h /usr/include/string.h
+forms.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+forms.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+forms.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+forms.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+forms.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+forms.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+forms.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+forms.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+forms.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+forms.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+forms.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+forms.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+forms.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+forms.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/forms.h
+get_resnames.o: /usr/include/stdio.h /usr/include/features.h
+get_resnames.o: /usr/include/stdc-predef.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+get_resnames.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/types.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+get_resnames.o: /usr/include/libio.h /usr/include/_G_config.h
+get_resnames.o: /usr/include/wchar.h
+get_resnames.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+get_resnames.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+get_resnames.o: /usr/include/X11/Xlib.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+get_resnames.o: /usr/include/endian.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/sys/select.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/select.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/time.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+get_resnames.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+get_resnames.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+get_resnames.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+get_resnames.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+get_resnames.o: /usr/include/X11/Xresource.h /usr/include/string.h
+get_resnames.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+get_resnames.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+get_resnames.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+get_resnames.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+get_resnames.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+get_resnames.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+get_resnames.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+get_resnames.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+get_resnames.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+get_resnames.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+get_resnames.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+get_resnames.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+get_resnames.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+get_resnames.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/dump.h
+get_resnames.o: ../include/get_resnames.h
+get_resvalue.o: /usr/include/stdio.h /usr/include/features.h
+get_resvalue.o: /usr/include/stdc-predef.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+get_resvalue.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/types.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+get_resvalue.o: /usr/include/libio.h /usr/include/_G_config.h
+get_resvalue.o: /usr/include/wchar.h
+get_resvalue.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+get_resvalue.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+get_resvalue.o: /usr/include/X11/Xlib.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+get_resvalue.o: /usr/include/endian.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/sys/select.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/select.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/time.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+get_resvalue.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+get_resvalue.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+get_resvalue.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+get_resvalue.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+get_resvalue.o: /usr/include/X11/Xresource.h /usr/include/string.h
+get_resvalue.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+get_resvalue.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+get_resvalue.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+get_resvalue.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+get_resvalue.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+get_resvalue.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+get_resvalue.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+get_resvalue.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+get_resvalue.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+get_resvalue.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+get_resvalue.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+get_resvalue.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+get_resvalue.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+get_resvalue.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/misc.h
+get_resvalue.o: ../include/fonts.h ../include/data.h ../include/color.h
+get_resvalue.o: ../include/id_resource.h ../include/get_resvalue.h
+id_resource.o: /usr/include/stdio.h /usr/include/features.h
+id_resource.o: /usr/include/stdc-predef.h
+id_resource.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+id_resource.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+id_resource.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/types.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+id_resource.o: /usr/include/libio.h /usr/include/_G_config.h
+id_resource.o: /usr/include/wchar.h
+id_resource.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+id_resource.o: /usr/include/stdlib.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h
+id_resource.o: /usr/include/endian.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+id_resource.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+id_resource.o: /usr/include/x86_64-linux-gnu/sys/select.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/select.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/time.h
+id_resource.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+id_resource.o: /usr/include/alloca.h
+id_resource.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+id_resource.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+id_resource.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+id_resource.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+id_resource.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+id_resource.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+id_resource.o: /usr/include/string.h /usr/include/xlocale.h
+id_resource.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+id_resource.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+id_resource.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+id_resource.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+id_resource.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+id_resource.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+id_resource.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+id_resource.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+id_resource.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+id_resource.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+id_resource.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+id_resource.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+id_resource.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+id_resource.o: ../include/lxb.h ../include/misc.h ../include/id_resource.h
+instant.o: /usr/include/stdio.h /usr/include/features.h
+instant.o: /usr/include/stdc-predef.h
+instant.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+instant.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+instant.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/types.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+instant.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+instant.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+instant.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+instant.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+instant.o: /usr/include/time.h /usr/include/endian.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+instant.o: /usr/include/x86_64-linux-gnu/sys/select.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/select.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/time.h
+instant.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+instant.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+instant.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+instant.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+instant.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+instant.o: /usr/include/X11/Xresource.h /usr/include/string.h
+instant.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+instant.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+instant.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+instant.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+instant.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+instant.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+instant.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+instant.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+instant.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+instant.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+instant.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+instant.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+instant.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+instant.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h
+instant.o: /usr/include/Xm/MenuShell.h /usr/include/Xm/ToggleB.h
+instant.o: /usr/include/Xm/Separator.h /usr/include/Xm/DrawnB.h
+instant.o: /usr/include/Xm/Frame.h /usr/include/Xm/Form.h
+instant.o: /usr/include/Xm/BulletinB.h /usr/include/Xm/RowColumn.h
+instant.o: /usr/include/Xm/Label.h /usr/include/Xm/Text.h
+instant.o: /usr/include/Xm/TextF.h /usr/include/Xm/DrawingA.h
+instant.o: /usr/include/Xm/Scale.h /usr/include/Xm/ArrowB.h
+instant.o: /usr/include/Xm/CascadeB.h /usr/include/Xm/ScrolledW.h
+instant.o: /usr/include/Xm/ScrollBar.h /usr/include/Xm/List.h
+instant.o: ../include/lxb.h ../include/data.h ../include/TopShell.h
+instant.o: ../include/select.h ../include/dialogs.h ../include/populate.h
+instant.o: ../include/create_simple.h ../include/create_composite.h
+instant.o: ../include/cscrolled.h ../include/cmenu.h ../include/instant.h
+instant.o: ../include/top.h
+lxb.o: /usr/include/X11/StringDefs.h /usr/include/Xm/Xm.h
+lxb.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+lxb.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h
+lxb.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+lxb.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/types.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/time.h
+lxb.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h /usr/include/endian.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+lxb.o: /usr/include/x86_64-linux-gnu/sys/select.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/select.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/time.h
+lxb.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/X11/X.h
+lxb.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+lxb.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+lxb.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+lxb.o: /usr/include/string.h /usr/include/xlocale.h /usr/include/X11/Core.h
+lxb.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+lxb.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+lxb.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+lxb.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+lxb.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+lxb.o: /usr/include/Xm/XmStrDefs.h /usr/include/Xm/XmStrDefs22.h
+lxb.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+lxb.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+lxb.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+lxb.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+lxb.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+lxb.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+lxb.o: /usr/include/Xm/DialogS.h /usr/include/Xm/MwmUtil.h
+lxb.o: /usr/include/X11/Xmd.h /home/lxb/lxb/oldX11/include/X11/Xmu/Editres.h
+lxb.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+lxb.o: /usr/include/wchar.h /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/stdlib.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/fcntl.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/fcntl.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/unistd.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/environments.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h
+lxb.o: /usr/include/ctype.h /usr/include/strings.h /usr/include/dirent.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/dirent.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/posix1_lim.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/local_lim.h
+lxb.o: /usr/include/linux/limits.h /usr/include/errno.h
+lxb.o: /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h
+lxb.o: /usr/include/x86_64-linux-gnu/asm/errno.h
+lxb.o: /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h
+lxb.o: ../include/lxb.h ../include/fallbacks.h ../include/version.h
+lxb.o: ../include/top.h ../include/Pallet.h ../include/ResourceEd.h
+lxb.o: ../include/translations.h
+menu.o: /usr/include/stdio.h /usr/include/features.h
+menu.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+menu.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+menu.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/types.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+menu.o: /usr/include/_G_config.h /usr/include/wchar.h
+menu.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+menu.o: /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+menu.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+menu.o: /usr/include/x86_64-linux-gnu/sys/select.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/select.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/time.h
+menu.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+menu.o: /usr/include/alloca.h
+menu.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+menu.o: /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h
+menu.o: /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h
+menu.o: /usr/include/asm-generic/errno.h
+menu.o: /usr/include/asm-generic/errno-base.h /usr/include/Xm/Xm.h
+menu.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+menu.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+menu.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+menu.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+menu.o: /usr/include/X11/Xresource.h /usr/include/string.h
+menu.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+menu.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+menu.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+menu.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+menu.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+menu.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+menu.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+menu.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+menu.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+menu.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+menu.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+menu.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+menu.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+menu.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MessageB.h
+menu.o: /usr/include/Xm/ToggleB.h ../include/lxb.h ../include/delete.h
+menu.o: ../include/ResourceEd.h ../include/play.h ../include/Pallet.h
+menu.o: ../include/code.h ../include/dialogs.h ../include/save.h
+menu.o: ../include/open.h ../include/recreate.h ../include/diag.h
+menu.o: ../include/populate.h ../include/children.h ../include/mhandlers.h
+menu.o: ../include/menu.h
+menubar.o: /usr/include/stdio.h /usr/include/features.h
+menubar.o: /usr/include/stdc-predef.h
+menubar.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+menubar.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+menubar.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/types.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+menubar.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+menubar.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+menubar.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+menubar.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+menubar.o: /usr/include/time.h /usr/include/endian.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+menubar.o: /usr/include/x86_64-linux-gnu/sys/select.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/select.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/time.h
+menubar.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+menubar.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+menubar.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+menubar.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+menubar.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+menubar.o: /usr/include/X11/Xresource.h /usr/include/string.h
+menubar.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+menubar.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+menubar.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+menubar.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+menubar.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+menubar.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+menubar.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+menubar.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+menubar.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+menubar.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+menubar.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+menubar.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+menubar.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+menubar.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h
+menubar.o: /usr/include/Xm/Form.h /usr/include/Xm/BulletinB.h
+menubar.o: /usr/include/Xm/ToggleB.h /usr/include/Xm/Separator.h
+menubar.o: /usr/include/Xm/RowColumn.h /usr/include/Xm/Label.h
+menubar.o: /usr/include/Xm/CascadeB.h ../include/lxb.h ../include/data.h
+menubar.o: ../include/select.h ../include/mhandlers.h ../include/recres.h
+menubar.o: ../include/menushell.h ../include/menubar.h
+menushell.o: /usr/include/stdio.h /usr/include/features.h
+menushell.o: /usr/include/stdc-predef.h
+menushell.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+menushell.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+menushell.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/types.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+menushell.o: /usr/include/libio.h /usr/include/_G_config.h
+menushell.o: /usr/include/wchar.h
+menushell.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+menushell.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+menushell.o: /usr/include/X11/Xlib.h
+menushell.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+menushell.o: /usr/include/endian.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+menushell.o: /usr/include/x86_64-linux-gnu/sys/select.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/select.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/time.h
+menushell.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+menushell.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+menushell.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+menushell.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+menushell.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+menushell.o: /usr/include/X11/Xresource.h /usr/include/string.h
+menushell.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+menushell.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+menushell.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+menushell.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+menushell.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+menushell.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+menushell.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+menushell.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+menushell.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+menushell.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+menushell.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+menushell.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+menushell.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+menushell.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MenuShell.h
+menushell.o: ../include/lxb.h ../include/data.h ../include/recres.h
+menushell.o: ../include/populate.h ../include/select.h ../include/mhandlers.h
+menushell.o: ../include/menushell.h
+mhandlers.o: /usr/include/stdio.h /usr/include/features.h
+mhandlers.o: /usr/include/stdc-predef.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+mhandlers.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/types.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+mhandlers.o: /usr/include/libio.h /usr/include/_G_config.h
+mhandlers.o: /usr/include/wchar.h
+mhandlers.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+mhandlers.o: /usr/include/X11/IntrinsicP.h /usr/include/X11/Intrinsic.h
+mhandlers.o: /usr/include/X11/Xlib.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+mhandlers.o: /usr/include/endian.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/sys/select.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/select.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/time.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+mhandlers.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+mhandlers.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+mhandlers.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+mhandlers.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+mhandlers.o: /usr/include/X11/Xresource.h /usr/include/string.h
+mhandlers.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+mhandlers.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+mhandlers.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+mhandlers.o: /usr/include/X11/CoreP.h /usr/include/X11/CompositeP.h
+mhandlers.o: /usr/include/X11/ConstrainP.h /usr/include/X11/ObjectP.h
+mhandlers.o: /usr/include/X11/RectObjP.h /usr/include/Xm/Xm.h
+mhandlers.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+mhandlers.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+mhandlers.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+mhandlers.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+mhandlers.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+mhandlers.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+mhandlers.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+mhandlers.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+mhandlers.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+mhandlers.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+mhandlers.o: /usr/include/Xm/XmIm.h /usr/include/Xm/Frame.h
+mhandlers.o: /usr/include/Xm/RowColumn.h ../include/lxb.h ../include/select.h
+mhandlers.o: ../include/misc.h ../include/data.h ../include/recres.h
+mhandlers.o: ../include/ResourceEd.h ../include/mhandlers.h
+misc.o: /usr/include/stdio.h /usr/include/features.h
+misc.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+misc.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+misc.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/types.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+misc.o: /usr/include/_G_config.h /usr/include/wchar.h
+misc.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+misc.o: /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+misc.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+misc.o: /usr/include/x86_64-linux-gnu/sys/select.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/select.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/time.h
+misc.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+misc.o: /usr/include/alloca.h
+misc.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+misc.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+misc.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+misc.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+misc.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+misc.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+misc.o: /usr/include/string.h /usr/include/xlocale.h /usr/include/X11/Core.h
+misc.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+misc.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+misc.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+misc.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+misc.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+misc.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+misc.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+misc.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+misc.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+misc.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+misc.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+misc.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+misc.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/color.h
+misc.o: ../include/data.h ../include/dump.h ../include/misc.h
+misc.o: ../include/rstruct.h ../include/tsizes.h ../include/xenum.h
+open.o: /usr/include/stdio.h /usr/include/features.h
+open.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+open.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+open.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+open.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+open.o: /usr/include/x86_64-linux-gnu/bits/types.h
+open.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+open.o: /usr/include/_G_config.h /usr/include/wchar.h
+open.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+open.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+open.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+open.o: /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h
+open.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h
+open.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+open.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+open.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+open.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+open.o: /usr/include/x86_64-linux-gnu/sys/select.h
+open.o: /usr/include/x86_64-linux-gnu/bits/select.h
+open.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+open.o: /usr/include/x86_64-linux-gnu/bits/time.h
+open.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+open.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+open.o: /usr/include/alloca.h
+open.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+open.o: /usr/include/x86_64-linux-gnu/sys/stat.h
+open.o: /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/fcntl.h
+open.o: /usr/include/x86_64-linux-gnu/bits/fcntl.h
+open.o: /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+open.o: /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+open.o: /usr/include/x86_64-linux-gnu/bits/environments.h
+open.o: /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h
+open.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+open.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+open.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+open.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+open.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+open.o: /usr/include/string.h /usr/include/xlocale.h /usr/include/X11/Core.h
+open.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+open.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+open.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+open.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+open.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+open.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+open.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+open.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+open.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+open.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+open.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+open.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+open.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/open.h
+play.o: /usr/include/stdio.h /usr/include/features.h
+play.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+play.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+play.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+play.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+play.o: /usr/include/x86_64-linux-gnu/bits/types.h
+play.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+play.o: /usr/include/_G_config.h /usr/include/wchar.h
+play.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+play.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+play.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/Xm/Xm.h
+play.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+play.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+play.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+play.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+play.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+play.o: /usr/include/x86_64-linux-gnu/sys/select.h
+play.o: /usr/include/x86_64-linux-gnu/bits/select.h
+play.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+play.o: /usr/include/x86_64-linux-gnu/bits/time.h
+play.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+play.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+play.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+play.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+play.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+play.o: /usr/include/X11/Xresource.h /usr/include/string.h
+play.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+play.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+play.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+play.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+play.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+play.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+play.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+play.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+play.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+play.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+play.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+play.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+play.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+play.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+play.o: /usr/include/X11/Xmd.h /home/lxb/lxb/oldX11/include/X11/Xmu/Editres.h
+play.o: ../include/lxb.h ../include/data.h ../include/cvt_resvalue.h
+play.o: ../include/cfunctions.h ../include/play.h ../include/TopShell.h
+populate.o: /usr/include/stdio.h /usr/include/features.h
+populate.o: /usr/include/stdc-predef.h
+populate.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+populate.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+populate.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/types.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+populate.o: /usr/include/libio.h /usr/include/_G_config.h
+populate.o: /usr/include/wchar.h
+populate.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+populate.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+populate.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+populate.o: /usr/include/time.h /usr/include/endian.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+populate.o: /usr/include/x86_64-linux-gnu/sys/select.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/select.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/time.h
+populate.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+populate.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+populate.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+populate.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+populate.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+populate.o: /usr/include/X11/Xresource.h /usr/include/string.h
+populate.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+populate.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+populate.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+populate.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+populate.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+populate.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+populate.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+populate.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+populate.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+populate.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+populate.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+populate.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+populate.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+populate.o: /usr/include/Xm/XmIm.h /usr/include/Xm/PushB.h
+populate.o: /home/lxb/lxb/oldX11/include/X11/Xaw/Tree.h
+populate.o: /home/lxb/lxb/oldX11/include/X11/Xmu/Converters.h
+populate.o: ../include/lxb.h ../include/data.h ../include/color.h
+populate.o: ../include/select.h ../include/Wtree.h ../include/populate.h
+pulldown.o: /usr/include/stdio.h /usr/include/features.h
+pulldown.o: /usr/include/stdc-predef.h
+pulldown.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+pulldown.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+pulldown.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/types.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+pulldown.o: /usr/include/libio.h /usr/include/_G_config.h
+pulldown.o: /usr/include/wchar.h
+pulldown.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+pulldown.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+pulldown.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+pulldown.o: /usr/include/time.h /usr/include/endian.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+pulldown.o: /usr/include/x86_64-linux-gnu/sys/select.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/select.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/time.h
+pulldown.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+pulldown.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+pulldown.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+pulldown.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+pulldown.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+pulldown.o: /usr/include/X11/Xresource.h /usr/include/string.h
+pulldown.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+pulldown.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+pulldown.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+pulldown.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+pulldown.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+pulldown.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+pulldown.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+pulldown.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+pulldown.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+pulldown.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+pulldown.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+pulldown.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+pulldown.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+pulldown.o: /usr/include/Xm/XmIm.h /usr/include/Xm/RowColumn.h
+pulldown.o: /usr/include/Xm/MenuShell.h ../include/lxb.h ../include/data.h
+pulldown.o: ../include/recres.h ../include/select.h ../include/mhandlers.h
+pulldown.o: ../include/populate.h ../include/menushell.h
+pulldown.o: ../include/pulldown.h
+recreate.o: /usr/include/stdio.h /usr/include/features.h
+recreate.o: /usr/include/stdc-predef.h
+recreate.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+recreate.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+recreate.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/types.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+recreate.o: /usr/include/libio.h /usr/include/_G_config.h
+recreate.o: /usr/include/wchar.h
+recreate.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+recreate.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+recreate.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+recreate.o: /usr/include/time.h /usr/include/endian.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+recreate.o: /usr/include/x86_64-linux-gnu/sys/select.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/select.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/time.h
+recreate.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+recreate.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+recreate.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+recreate.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+recreate.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+recreate.o: /usr/include/X11/Xresource.h /usr/include/string.h
+recreate.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+recreate.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+recreate.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+recreate.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+recreate.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+recreate.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+recreate.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+recreate.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+recreate.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+recreate.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+recreate.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+recreate.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+recreate.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+recreate.o: /usr/include/Xm/XmIm.h /usr/include/Xm/MwmUtil.h
+recreate.o: /usr/include/X11/Xmd.h
+recreate.o: /home/lxb/lxb/oldX11/include/X11/Xmu/Editres.h ../include/lxb.h
+recreate.o: ../include/data.h ../include/color.h ../include/mhandlers.h
+recreate.o: ../include/cvt_resvalue.h ../include/cfunctions.h
+recreate.o: ../include/save.h ../include/recreate.h
+recres.o: /usr/include/stdio.h /usr/include/features.h
+recres.o: /usr/include/stdc-predef.h
+recres.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+recres.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+recres.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/types.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+recres.o: /usr/include/_G_config.h /usr/include/wchar.h
+recres.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+recres.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+recres.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+recres.o: /usr/include/time.h /usr/include/endian.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+recres.o: /usr/include/x86_64-linux-gnu/sys/select.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/select.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/time.h
+recres.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+recres.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+recres.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+recres.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+recres.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+recres.o: /usr/include/X11/Xresource.h /usr/include/string.h
+recres.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+recres.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+recres.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+recres.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+recres.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+recres.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+recres.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+recres.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+recres.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+recres.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+recres.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+recres.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+recres.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+recres.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/recres.h
+save.o: /usr/include/stdio.h /usr/include/features.h
+save.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+save.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+save.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+save.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+save.o: /usr/include/x86_64-linux-gnu/bits/types.h
+save.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+save.o: /usr/include/_G_config.h /usr/include/wchar.h
+save.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+save.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+save.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+save.o: /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h
+save.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h
+save.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+save.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+save.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+save.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+save.o: /usr/include/x86_64-linux-gnu/sys/select.h
+save.o: /usr/include/x86_64-linux-gnu/bits/select.h
+save.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+save.o: /usr/include/x86_64-linux-gnu/bits/time.h
+save.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+save.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+save.o: /usr/include/alloca.h
+save.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+save.o: /usr/include/x86_64-linux-gnu/sys/stat.h
+save.o: /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/fcntl.h
+save.o: /usr/include/x86_64-linux-gnu/bits/fcntl.h
+save.o: /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+save.o: /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+save.o: /usr/include/x86_64-linux-gnu/bits/environments.h
+save.o: /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h
+save.o: /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h
+save.o: /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h
+save.o: /usr/include/asm-generic/errno.h
+save.o: /usr/include/asm-generic/errno-base.h /usr/include/Xm/Xm.h
+save.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+save.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+save.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+save.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+save.o: /usr/include/X11/Xresource.h /usr/include/string.h
+save.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+save.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+save.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+save.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+save.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+save.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+save.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+save.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+save.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+save.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+save.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+save.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+save.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+save.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/TopShell.h
+save.o: ../include/top.h ../include/save.h
+select.o: /usr/include/stdio.h /usr/include/features.h
+select.o: /usr/include/stdc-predef.h
+select.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+select.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+select.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+select.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+select.o: /usr/include/x86_64-linux-gnu/bits/types.h
+select.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+select.o: /usr/include/_G_config.h /usr/include/wchar.h
+select.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+select.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+select.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+select.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+select.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+select.o: /usr/include/time.h /usr/include/endian.h
+select.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+select.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+select.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+select.o: /usr/include/x86_64-linux-gnu/sys/select.h
+select.o: /usr/include/x86_64-linux-gnu/bits/select.h
+select.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+select.o: /usr/include/x86_64-linux-gnu/bits/time.h
+select.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+select.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+select.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+select.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+select.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+select.o: /usr/include/X11/Xresource.h /usr/include/string.h
+select.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+select.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+select.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+select.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+select.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+select.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+select.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+select.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+select.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+select.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+select.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+select.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+select.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+select.o: /usr/include/Xm/XmIm.h /usr/include/X11/cursorfont.h
+select.o: ../include/lxb.h ../include/data.h ../include/populate.h
+select.o: ../include/ResourceEd.h ../include/select.h
+selected.o: /usr/include/stdio.h /usr/include/features.h
+selected.o: /usr/include/stdc-predef.h
+selected.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+selected.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+selected.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/types.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+selected.o: /usr/include/libio.h /usr/include/_G_config.h
+selected.o: /usr/include/wchar.h
+selected.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+selected.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+selected.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+selected.o: /usr/include/time.h /usr/include/endian.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+selected.o: /usr/include/x86_64-linux-gnu/sys/select.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/select.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/time.h
+selected.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+selected.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+selected.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+selected.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+selected.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+selected.o: /usr/include/X11/Xresource.h /usr/include/string.h
+selected.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+selected.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+selected.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+selected.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+selected.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+selected.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+selected.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+selected.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+selected.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+selected.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+selected.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+selected.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+selected.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+selected.o: /usr/include/Xm/XmIm.h /usr/include/Xm/Text.h
+selected.o: /usr/include/Xm/TextF.h /usr/include/Xm/List.h ../include/lxb.h
+selected.o: ../include/ResourceEd.h ../include/CallbackEd.h
+selected.o: ../include/show_options.h ../include/show_res.h
+selected.o: ../include/get_resvalue.h ../include/set_resvalue.h
+selected.o: ../include/selected.h
+set_resvalue.o: /usr/include/stdio.h /usr/include/features.h
+set_resvalue.o: /usr/include/stdc-predef.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+set_resvalue.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/types.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+set_resvalue.o: /usr/include/libio.h /usr/include/_G_config.h
+set_resvalue.o: /usr/include/wchar.h
+set_resvalue.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+set_resvalue.o: /usr/include/stdlib.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h
+set_resvalue.o: /usr/include/endian.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/sys/select.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/select.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/time.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+set_resvalue.o: /usr/include/alloca.h
+set_resvalue.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+set_resvalue.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+set_resvalue.o: /usr/include/X11/Xlib.h /usr/include/X11/X.h
+set_resvalue.o: /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h
+set_resvalue.o: /usr/include/X11/Xutil.h /usr/include/X11/keysym.h
+set_resvalue.o: /usr/include/X11/keysymdef.h /usr/include/X11/Xresource.h
+set_resvalue.o: /usr/include/string.h /usr/include/xlocale.h
+set_resvalue.o: /usr/include/X11/Core.h /usr/include/X11/Composite.h
+set_resvalue.o: /usr/include/X11/Constraint.h /usr/include/X11/Object.h
+set_resvalue.o: /usr/include/X11/RectObj.h /usr/include/X11/Shell.h
+set_resvalue.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+set_resvalue.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+set_resvalue.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+set_resvalue.o: /usr/include/X11/StringDefs.h /usr/include/Xm/XmStrDefs22.h
+set_resvalue.o: /usr/include/Xm/XmStrDefs23.h /usr/include/Xm/VirtKeys.h
+set_resvalue.o: /usr/include/Xm/Transfer.h /usr/include/Xm/DragC.h
+set_resvalue.o: /usr/include/Xm/Display.h /usr/include/Xm/DropSMgr.h
+set_resvalue.o: /usr/include/Xm/Primitive.h /usr/include/Xm/Manager.h
+set_resvalue.o: /usr/include/Xm/Gadget.h /usr/include/Xm/TxtPropCv.h
+set_resvalue.o: /usr/include/Xm/VendorS.h /usr/include/Xm/XmIm.h
+set_resvalue.o: ../include/lxb.h ../include/color.h ../include/fonts.h
+set_resvalue.o: ../include/data.h ../include/misc.h ../include/recres.h
+set_resvalue.o: ../include/id_resource.h ../include/set_resvalue.h
+show_options.o: /usr/include/stdio.h /usr/include/features.h
+show_options.o: /usr/include/stdc-predef.h
+show_options.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+show_options.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+show_options.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/types.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+show_options.o: /usr/include/libio.h /usr/include/_G_config.h
+show_options.o: /usr/include/wchar.h
+show_options.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+show_options.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+show_options.o: /usr/include/X11/Xlib.h
+show_options.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+show_options.o: /usr/include/endian.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+show_options.o: /usr/include/x86_64-linux-gnu/sys/select.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/select.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/time.h
+show_options.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+show_options.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+show_options.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+show_options.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+show_options.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+show_options.o: /usr/include/X11/Xresource.h /usr/include/string.h
+show_options.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+show_options.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+show_options.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+show_options.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+show_options.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+show_options.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+show_options.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+show_options.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+show_options.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+show_options.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+show_options.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+show_options.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+show_options.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+show_options.o: /usr/include/Xm/XmIm.h /usr/include/Xm/Text.h
+show_options.o: /usr/include/Xm/List.h ../include/lxb.h
+show_options.o: ../include/ResourceEd.h ../include/data.h
+show_options.o: ../include/special.h ../include/xenum.h
+show_options.o: ../include/show_options.h
+show_res.o: /usr/include/stdio.h /usr/include/features.h
+show_res.o: /usr/include/stdc-predef.h
+show_res.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+show_res.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+show_res.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/types.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+show_res.o: /usr/include/libio.h /usr/include/_G_config.h
+show_res.o: /usr/include/wchar.h
+show_res.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+show_res.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+show_res.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+show_res.o: /usr/include/time.h /usr/include/endian.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+show_res.o: /usr/include/x86_64-linux-gnu/sys/select.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/select.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/time.h
+show_res.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+show_res.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+show_res.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+show_res.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+show_res.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+show_res.o: /usr/include/X11/Xresource.h /usr/include/string.h
+show_res.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+show_res.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+show_res.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+show_res.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+show_res.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+show_res.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+show_res.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+show_res.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+show_res.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+show_res.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+show_res.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+show_res.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+show_res.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+show_res.o: /usr/include/Xm/XmIm.h /usr/include/Xm/Text.h
+show_res.o: /usr/include/Xm/List.h ../include/lxb.h ../include/ResourceEd.h
+show_res.o: ../include/get_resnames.h ../include/show_res.h
+special.o: /usr/include/stdio.h /usr/include/features.h
+special.o: /usr/include/stdc-predef.h
+special.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+special.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+special.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+special.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+special.o: /usr/include/x86_64-linux-gnu/bits/types.h
+special.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+special.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+special.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+special.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+special.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+special.o: /usr/include/Xm/Xm.h /usr/include/X11/Intrinsic.h
+special.o: /usr/include/X11/Xlib.h /usr/include/x86_64-linux-gnu/sys/types.h
+special.o: /usr/include/time.h /usr/include/endian.h
+special.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+special.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+special.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+special.o: /usr/include/x86_64-linux-gnu/sys/select.h
+special.o: /usr/include/x86_64-linux-gnu/bits/select.h
+special.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+special.o: /usr/include/x86_64-linux-gnu/bits/time.h
+special.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+special.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+special.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+special.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+special.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+special.o: /usr/include/X11/Xresource.h /usr/include/string.h
+special.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+special.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+special.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+special.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+special.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+special.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+special.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+special.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+special.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+special.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+special.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+special.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+special.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+special.o: /usr/include/Xm/XmIm.h ../include/lxb.h ../include/color.h
+special.o: ../include/data.h ../include/special.h
+top.o: /usr/include/stdio.h /usr/include/features.h
+top.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+top.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+top.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+top.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+top.o: /usr/include/x86_64-linux-gnu/bits/types.h
+top.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+top.o: /usr/include/_G_config.h /usr/include/wchar.h
+top.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+top.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+top.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/stdlib.h
+top.o: /usr/include/x86_64-linux-gnu/bits/waitflags.h
+top.o: /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h
+top.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+top.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+top.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+top.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+top.o: /usr/include/x86_64-linux-gnu/sys/select.h
+top.o: /usr/include/x86_64-linux-gnu/bits/select.h
+top.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+top.o: /usr/include/x86_64-linux-gnu/bits/time.h
+top.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+top.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+top.o: /usr/include/alloca.h
+top.o: /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/Xm/Xm.h
+top.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+top.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+top.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+top.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+top.o: /usr/include/X11/Xresource.h /usr/include/string.h
+top.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+top.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+top.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+top.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+top.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+top.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+top.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+top.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+top.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+top.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+top.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+top.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+top.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+top.o: /usr/include/Xm/XmIm.h /usr/include/Xm/Form.h
+top.o: /usr/include/Xm/BulletinB.h /usr/include/Xm/Separator.h
+top.o: /usr/include/Xm/ScrolledW.h /usr/include/Xm/Frame.h
+top.o: /usr/include/Xm/Text.h ../include/forms.h ../include/Wtree.h
+top.o: ../include/menu.h ../include/select.h ../include/top.h
+top.o: ../include/lxb.h
+translations.o: /usr/include/stdio.h /usr/include/features.h
+translations.o: /usr/include/stdc-predef.h
+translations.o: /usr/include/x86_64-linux-gnu/sys/cdefs.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+translations.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+translations.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/types.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+translations.o: /usr/include/libio.h /usr/include/_G_config.h
+translations.o: /usr/include/wchar.h
+translations.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h
+translations.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+translations.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+translations.o: /usr/include/endian.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/endian.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+translations.o: /usr/include/x86_64-linux-gnu/sys/select.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/select.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/time.h
+translations.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+translations.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+translations.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+translations.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+translations.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+translations.o: /usr/include/X11/Xresource.h /usr/include/string.h
+translations.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+translations.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+translations.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+translations.o: /usr/include/X11/StringDefs.h /usr/include/X11/cursorfont.h
+translations.o: /usr/include/Xm/Xm.h /usr/include/X11/Shell.h
+translations.o: /usr/include/X11/SM/SMlib.h /usr/include/X11/SM/SM.h
+translations.o: /usr/include/X11/ICE/ICElib.h /usr/include/X11/ICE/ICE.h
+translations.o: /usr/include/X11/Xatom.h /usr/include/Xm/XmStrDefs.h
+translations.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+translations.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+translations.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+translations.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+translations.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+translations.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+translations.o: /usr/include/Xm/XmIm.h ../include/translations.h
+translations.o: ../include/lxb.h
+util.o: /usr/include/stdio.h /usr/include/features.h
+util.o: /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/cdefs.h
+util.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+util.o: /usr/include/x86_64-linux-gnu/gnu/stubs.h
+util.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+util.o: /usr/include/x86_64-linux-gnu/bits/types.h
+util.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h
+util.o: /usr/include/_G_config.h /usr/include/wchar.h
+util.o: /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h
+util.o: /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
+util.o: /usr/include/x86_64-linux-gnu/bits/sys_errlist.h /usr/include/Xm/Xm.h
+util.o: /usr/include/X11/Intrinsic.h /usr/include/X11/Xlib.h
+util.o: /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h
+util.o: /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h
+util.o: /usr/include/x86_64-linux-gnu/bits/byteswap.h
+util.o: /usr/include/x86_64-linux-gnu/bits/byteswap-16.h
+util.o: /usr/include/x86_64-linux-gnu/sys/select.h
+util.o: /usr/include/x86_64-linux-gnu/bits/select.h
+util.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+util.o: /usr/include/x86_64-linux-gnu/bits/time.h
+util.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+util.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+util.o: /usr/include/X11/X.h /usr/include/X11/Xfuncproto.h
+util.o: /usr/include/X11/Xosdefs.h /usr/include/X11/Xutil.h
+util.o: /usr/include/X11/keysym.h /usr/include/X11/keysymdef.h
+util.o: /usr/include/X11/Xresource.h /usr/include/string.h
+util.o: /usr/include/xlocale.h /usr/include/X11/Core.h
+util.o: /usr/include/X11/Composite.h /usr/include/X11/Constraint.h
+util.o: /usr/include/X11/Object.h /usr/include/X11/RectObj.h
+util.o: /usr/include/X11/Shell.h /usr/include/X11/SM/SMlib.h
+util.o: /usr/include/X11/SM/SM.h /usr/include/X11/ICE/ICElib.h
+util.o: /usr/include/X11/ICE/ICE.h /usr/include/X11/Xatom.h
+util.o: /usr/include/Xm/XmStrDefs.h /usr/include/X11/StringDefs.h
+util.o: /usr/include/Xm/XmStrDefs22.h /usr/include/Xm/XmStrDefs23.h
+util.o: /usr/include/Xm/VirtKeys.h /usr/include/Xm/Transfer.h
+util.o: /usr/include/Xm/DragC.h /usr/include/Xm/Display.h
+util.o: /usr/include/Xm/DropSMgr.h /usr/include/Xm/Primitive.h
+util.o: /usr/include/Xm/Manager.h /usr/include/Xm/Gadget.h
+util.o: /usr/include/Xm/TxtPropCv.h /usr/include/Xm/VendorS.h
+util.o: /usr/include/Xm/XmIm.h /usr/include/Xm/Text.h /usr/include/Xm/TextF.h
+util.o: /usr/include/Xm/List.h ../include/lxb.h ../include/ResourceEd.h
+util.o: ../include/show_calledit.h ../include/show_res.h
+util.o: ../include/selected.h ../include/util.h

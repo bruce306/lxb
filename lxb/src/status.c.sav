@@ -1,0 +1,276 @@
+/*************************************************************************
+ *
+ * File: status.c
+ *
+ *	Build the area between the menubar and the icon pallet.
+ *
+ *    Copyright (C) 1995  Bruce Parkin 
+ *
+ ************************************************************************/
+
+/* include files */
+#include <Xm/Xm.h>
+#include <Xm/Label.h>
+#include "forms.h"
+#include "dialogs.h"
+#include "status.h"
+#include "lxb.h"
+
+#define DEFAULT_APPNAME		"lxbApp"
+#define DEFAULT_SAVEFILE_NAME	"lxbApp.lxb"
+
+/* local prototypes */
+static Widget
+build_savefile_area(Widget parent);
+
+static Widget
+build_appname_area(Widget parent);
+
+/* local variables */
+static Widget appname;
+static Widget save_filename;
+
+/*********************************************************************
+ *
+ * Function: build_status_area
+ *
+ *	Build the GUI
+ *
+ * 	Parent is the main window widget
+ *
+ ********************************************************************/
+Widget
+build_status_area(Widget parent)
+{
+	Widget appname;
+	Widget savefile;
+	Widget form;
+	int n;
+	Arg args[5];
+
+	form = LxbMakeForm(parent, "status_bar");
+
+	n=0;
+	XtSetArg(args[n], XmNwidth, 530);n++;
+	XtSetValues(form, args, n);
+
+	/* top area */
+	appname = build_appname_area(form);
+
+	/* bottom area */
+	savefile = build_savefile_area(form);
+
+	/* top, bottom, left, right */
+	LxbSetConstraints (appname,
+						XmATTACH_FORM, XmATTACH_NONE, XmATTACH_FORM, XmATTACH_FORM,
+						form, NULL, form, form);
+
+	LxbSetConstraints (savefile,
+						XmATTACH_WIDGET, XmATTACH_FORM, XmATTACH_FORM, XmATTACH_FORM,
+						appname, form, form, form);
+
+	return (form);
+
+}
+/*********************************************************************
+ *
+ * Function: build_savefile_area
+ *
+ *	Build the subpart area below the application name area, 
+ *	but above the icon pallet.
+ *
+ * 	Parent is a form
+ *
+ ********************************************************************/
+static Widget
+build_savefile_area(Widget parent)
+{
+	Widget save_area; 
+	Widget savelabel;
+  Arg args[10];
+  int n;
+  XmString xm;     
+
+	/* area below the menubar */
+	save_area = LxbMakeForm(parent, "save_area");
+
+  /* put the labels in the status area */
+  n=0;
+  XtSetArg(args[n], XmNresizable, True);n++;
+  XtSetArg(args[n], XmNalignment, XmALIGNMENT_BEGINNING);n++;
+  XtSetArg(args[n], XmNrecomputeSize, False);n++;
+
+  xm = XmStringCreateSimple("Save File Name:");
+  XtSetArg(args[n], XmNlabelString, xm);n++;
+  XtSetArg(args[n], XmNmarginWidth, 10);n++;
+  XtSetArg(args[n], XmNwidth, 150);n++;
+  savelabel = XtCreateManagedWidget ("savelabel", xmLabelWidgetClass, save_area, args, n);
+  XmStringFree(xm); 
+
+  n=3;
+  xm = XmStringCreateSimple(DEFAULT_SAVEFILE_NAME);
+  XtSetArg(args[n], XmNlabelString, xm);n++;
+  XtSetArg(args[n], XmNx, 260);n++;
+  XtSetArg(args[n], XmNwidth, 150);n++;
+  save_filename = XtCreateManagedWidget ("save_filename", xmLabelWidgetClass, save_area, args, n);
+
+  XmStringFree(xm);                                                                                    
+	/* top, bottom, left, right */
+  LxbSetConstraints (savelabel,
+            XmATTACH_FORM, XmATTACH_FORM, XmATTACH_FORM, XmATTACH_NONE,
+            save_area, save_area, save_area, NULL);
+
+  /* top, bottom, left, right */
+  LxbSetConstraints (save_filename,
+            XmATTACH_FORM, XmATTACH_FORM, XmATTACH_WIDGET, XmATTACH_FORM,
+            save_area, save_area, savelabel, save_area);  
+
+	return (save_area);
+}
+/*********************************************************************
+ *
+ * Function: build_appname_area
+ *
+ *	Build the subpart area below the menubar
+ *	but above widget name area.
+ *
+ * 	Parent is a form
+ *
+ ********************************************************************/
+static Widget
+build_appname_area(Widget parent)
+{
+	Widget 		area; 
+	Widget 		applabel; 
+	Arg 			args[10];
+	int 			n;
+	XmString	xm;
+
+	/* area below the menubar */
+	area = LxbMakeForm(parent, "appname_area");
+
+	/* put the labels in the status area */
+	n=0;
+	XtSetArg(args[n], XmNresizable, True);n++;
+	XtSetArg(args[n], XmNalignment, XmALIGNMENT_BEGINNING);n++;
+	XtSetArg(args[n], XmNrecomputeSize, False);n++;
+
+	xm = XmStringCreateSimple("Application Name: ");
+
+	XtSetArg(args[n], XmNlabelString, xm);n++;
+	XtSetArg(args[n], XmNmarginWidth, 10);n++;
+  XtSetArg(args[n], XmNwidth, 150);n++;
+	applabel = XtCreateManagedWidget ("applabel", xmLabelWidgetClass, area, args, n);
+
+	XmStringFree(xm);
+
+	n=3;
+	XtSetArg(args[n], XmNx, 260);n++;
+	XtSetArg(args[n], XmNwidth, 150);n++;
+
+	xm = XmStringCreateSimple(DEFAULT_APPNAME);
+
+	/* display the name in the status area */
+	XtSetArg(args[n], XmNlabelString, xm);n++;
+	appname = XtCreateManagedWidget ("appname", xmLabelWidgetClass, area, args, n);
+
+	XmStringFree(xm);
+
+	/* top, bottom, left, right */
+	LxbSetConstraints (applabel,
+						XmATTACH_FORM, XmATTACH_FORM, XmATTACH_FORM, XmATTACH_NONE,
+						area, area, area, NULL);
+
+	/* top, bottom, left, right */
+	LxbSetConstraints (appname,
+						XmATTACH_FORM, XmATTACH_FORM, XmATTACH_WIDGET, XmATTACH_FORM,
+						area, area, applabel, area);
+
+	return (area);
+}
+/*********************************************************************
+ *
+ * Function: get_save_filename
+ *	Get the current save filename.
+ *
+ ********************************************************************/
+char *
+get_save_filename()
+{
+	Arg args[2];
+  XmString xms; 
+	char *name;
+
+	XtSetArg(args[0], XmNlabelString, &xms);
+	XtGetValues(save_filename, args, 1);
+
+	XmStringGetLtoR(xms, XmSTRING_DEFAULT_CHARSET, &name);
+	XmStringFree(xms);
+
+	return (name);
+}
+/*********************************************************************
+ *
+ * Function: set_save_filename
+ *	Set the value for the save filename.
+ *
+ ********************************************************************/
+void
+set_save_filename(char *name)
+{
+	Arg args[2];
+  XmString xms; 
+
+	/* make the XmString */
+	xms = XmStringCreateSimple(name);
+
+	/* display the name in the status area */
+	XtSetArg(args[0], XmNlabelString, xms);
+	XtSetValues(save_filename, args, 1);            
+
+	XmStringFree(xms);
+}
+/*********************************************************************
+ *
+ * Function: get_appname
+ *
+ *	Get the current application name - stored in the appname_value widget
+ *
+ ********************************************************************/
+char *
+get_appname()
+{
+	Arg args[2];
+  XmString xms; 
+	char *name;
+
+	XtSetArg(args[0], XmNlabelString, &xms);
+	XtGetValues(appname, args, 1);
+
+	XmStringGetLtoR(xms, XmSTRING_DEFAULT_CHARSET, &name);
+	XmStringFree(xms);
+
+	return (name);
+}
+/*********************************************************************
+ *
+ * Function: set_appname
+ *
+ *	Display the application name in the status area.
+ *
+ ********************************************************************/
+void
+set_appname(char *name)
+{
+	Arg args[2];
+  XmString xms; 
+
+	/* make the XmString */
+	xms = XmStringCreateSimple(name);
+
+	/* display the name in the status area */
+	XtSetArg(args[0], XmNlabelString, xms);
+	XtSetValues(appname, args, 1);            
+
+	XmStringFree(xms);
+}
