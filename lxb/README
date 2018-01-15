@@ -6,6 +6,16 @@ File: README
 01/14/18
 BEP
 
+Notes about the data directory:
+	
+	That directory was the way I settled on to define the actual
+	size of data types in the XWindow System 20 years ago. Now
+	I don't know. It aquires the sizes of various X datatypes
+	and writes header files, and copies them into the include
+	directory for use by the lxb source. The current *.h files
+	in the include directory are for the Ubuntu v16 ported to a
+	64-bit system.
+
 ----------------------------------------------------------------------------
 
 1) Building lxb
