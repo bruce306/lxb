@@ -184,7 +184,7 @@ make_about_xmstring()
 	XmStringFree(nxt);
 
 	nxt = xms;
-	lst = XmStringCreateLtoR("\nhttp://www.tc.umn.edu/~parki005/lxb", XmSTRING_DEFAULT_CHARSET);
+	lst = XmStringCreateLtoR("\ncurrently nowhere except github", XmSTRING_DEFAULT_CHARSET);
 	xms = XmStringConcat(xms, lst);
 	XmStringFree(lst);
 	XmStringFree(nxt);
