@@ -1,0 +1,14 @@
+/**************************************************
+* File: calledit.h - callback editor gui file
+**************************************************/
+
+void
+make_callback_editor(Widget parent);
+
+/* external global variables */
+extern Widget calledit_shell;
+extern Widget callback_widget;
+extern Widget callback_name;
+
+/* callback function name is extracted from */
+extern Widget callback_function;
