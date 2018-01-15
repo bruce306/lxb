@@ -1,0 +1,96 @@
+/************************************************************************
+*
+*	File:	NOTES - for the tools directory.
+*	
+************************************************************************/
+
+THE NOTES
+---------
+
+This directory contains data files that the programs in this directory 
+convert into header files copied into the include directory for lxb and
+made much use of.
+
+This directory is concerned with the X resources for the Motif widgets,
+their data type size, their Enumerated values, and so on. The programs
+source code should not be touched - unless you understand completely
+what you are doing - as the rest of lxb depends on the end result *.h
+files created to be in an exact format.
+
+PLEASE NOTE FOR YOUR OWN GOOD
+-----------------------------
+
+To add new resources make sure you know what each file and all its entries
+mean. Also be aware that certain resources were not done because they can
+not be edited except at creation time, automatically set by other resources,
+depend on the parent widget, or you name it: these cases cannot be handled
+yet by lxb so I just don't allow the resource to be edited.
+
+BUT, IF YOU INSIST ON ADDING RESOURCES
+-------------------------------------- 
+0) 	Make backup copies of the 3 data files listed below.
+
+1)  The xtypes file is pretty static; you should not have to add to it. You
+		should verify that the datatype of the X resource that you are adding is
+		listed in it, but most likely it will be.
+
+2)	Check the xres file to see if the resource name (without the "XmN") is 
+		listed or not. If not, there make an entry for it. The various fields
+		are sort of described below.
+
+3)	If the resource added has Enumerated types for values of the resource
+		then check the xenum file to see if an entry exists for it. If not, add
+		one. Again, make sure you know what each field is.
+
+4)	Type make. This will remake any conversion programs required (which I
+		doubt will be needed), and remake the header files from any data files
+		you might have modified. Then the end result will be copied into lxb's
+		include directory. Then you are done in this directory.
+
+DATA FILES
+----------
+
+1)	xtypes: is a unique list of the X types only; added manually.
+
+2)	xres: All possible resource types; added manually for each widget.
+
+3)	xenum: The Enumerated types in C struct format; done by hand; src is Xm.h 
+
+###############################################################################
+
+
+		INPUT FILE		PROGRAM			OUTPUT			..COMPILE..		PROGRAM				OUTPUT
+		----------		--------		------			-----------		-------				------
+1)	xtypes		-->	(ss)		-->	getsizes.c 	->.......->		getsizes -->	tmpsizes	-->
+		tmpsizes	-->	scvt		-->	tsizes.h
+
+2)	xres			-->	cvt			-->	rstruct.h
+
+
+3) 	xenum			-->	cp			-->	xenum.h 
+
+################################################################################
+
+xres file format:
+-----------------
+
+	The 1st field is the resource name without "XmN"; a string.
+	The 2nd field is the resource datatype, a string;
+	The 3rd field is an integer number.
+
+	3rd Field: (n, a number)
+	------------------------
+
+		0,1,2...:		an index into xenum.h, and an enumerated type.
+			
+		-999		:		not enumerated, ignore this field, a simple resource type
+		
+		-100		:		To Be Done - not implemented yet.
+	
+		n < 0		: 	Special Resources - require special processing
+
+		-1			:			a Pixel (color)
+		-2			:			a Widget 
+		-3			:			an XmString
+		-4			:			a fontList
+		-5			:			a sibling widget (same parent; XmForm)

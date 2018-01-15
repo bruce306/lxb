@@ -1,0 +1,26 @@
+Boolean
+Cardinal
+Colormap
+Dimension
+KeySym
+Pixel
+Pixmap
+Position
+String
+Widget
+WidgetClass
+WidgetList
+Window
+XmFontList
+XmNavigationType
+XmString
+XmStringDirection
+XmTextPosition
+XtAccelerators
+XtCallbackList
+XtPointer
+XtTranslations
+int
+short
+unsigned char
+unsigned int
