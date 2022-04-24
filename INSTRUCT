@@ -1,0 +1,248 @@
+----------------------------------------------------------------------------
+
+LXB - Linux X/Motif Builder Version 0.63
+File: INSTRUCT
+Last Change: 4/2022
+Original date: 1995
+
+----------------------------------------------------------------------------
+
+
+The best way to see how the builder works is to just play around with it.
+And a lot more cost efficient than for me to attempt to write a detailed set
+of instructions that may not make much sense anyhow. But I'll try and give
+you some basics.
+
+LAYOUT OF THE LXB SOFTWARE
+--------------------------
+
+There are 4 lxb windows:
+
+  1. The main lxb window
+  2. The resource editor
+  3. The widget pallet
+  4. The application GUI being built
+
+Screen shots and descriptions can be found on the lxb web page.
+
+THE MAIN LXB WINDOW
+
+The first and main window that will appear when the user enters "lxb" and
+presses <CR> will have on it a Menubar and below that an area that a
+Widget Heirarchy Display Area. To the right of the panner widget is message
+output area for the program to display messages, warnings, and errors. This
+is gradually being made more use of, as it is new. Most warnings and errors
+will be sent to stdout or errout in the window invoking lxb.
+
+1) Menubar
+
+Files Pulldown:
+
+   * New Button: Begin a new GUI
+   * Open Button: Opens an existing lxb save file. (See below)
+   * Save Button: Saves the current GUI in the current save file.
+   * Save As.. Button: Saves the current GUI in another lxb save file.
+   * Quit Button: Exits lxb.
+
+Edit Pulldown:
+
+   * Delete Widget Button: Deletes the selected widget.
+
+Options Pulldown:
+
+   * Play Mode Button: Creates GUI just as if the user had compiled the
+     generated C code and run the program. The GUI can then be tested and
+     checked as to how it will really function once made.
+   * Code Button: Produces the C source code, header files, X defaults file,
+     and Makefile for the GUI application.
+   * Application Name.. Button: displays a popup that allows the user to
+     change the name of the application GUI being built.
+
+Diagnostics Pulldown
+
+   * Dump Widget Tree Button: Lists the widgets in the application.
+   * Selected Widget Resources Button: Lists resources of the selected
+     widget.
+
+2) Widget Heirarchy Area:
+
+Displays a window that uses the Xaw widgets Porthole, Panner, and Tree
+along with Motif pushbuttons to display the parent/child relationship
+of the widgets in the created GUI in a tree structure. The nodes in the
+tree are all named according to the widgets in the GUI. Clicking on a
+node in the tree in this window will cause the corresponding widget in
+the GUI application to be "selected".
+
+The "selected" widget is the one that can be resized, moved, and have
+it's resources edited. Usually, the selected widget will have a black
+border around it in the GUI being built. (There are a few quirks in
+Motif that I have not made work arounds for yet so once in while this
+may not happen). The selected widget WILL be indicated in the Widget
+Heirarchy Display window by inverting the colors on the node with it's
+name.
+
+The other way of selecting a widget is to click on it with MB1 in the GUI
+itself.
+
+RESOURCE EDITOR
+
+The top area lists some data on the selected widget. Here you can change
+the widget's name and set it's variable in the code to local or global.
+
+The next area down is a List of all resources associated with the selected
+widget. Clicking once on one of the entries in this list will retrieve the
+resource value and place it in the text widget that is directly beneath it.
+(Providing that the work has been done in lxb to handle that resource).
+
+If the resource value has several options, such as a color, or the
+enumerated types, all possible values will appear in the small List box
+directly beneath the text input field.
+
+Clicking on any selection in the option box places it in the text input box.
+
+A value may also be entered with the keyboard into the text input field, and
+of course this method must be used for normal resources, like width and
+height. Pressing the OK button or Return key will will result in lxb 
+attempting to set whatever is in the text input field as the value for 
+resource selected in the top most List box in the widget.
+
+WIDGET PALLET
+
+This will appear to the left of the main lxb window. On it are the Motif
+widget names in icon-like pushbuttons. Pressing on one will, if it is legal,
+result in that widget being instantiated as a child of the current selected
+widget.
+
+APPLICATION GUI
+
+This will appear below the main lxb GUI area, but can be moved and resized
+and placed where ever you wish. This is the GUI application the user is
+building, and the canvas from where the user will work.
+
+NAVIGATION AMONGST THE GUI'S WIDGETS
+
+When the pointer is in the GUI application window and mouse buttons are
+pressed the results are described below.
+
+   * MB1: Selects widgets. When the pointer is in the aplication window and
+     over the the widget and this button is pressed and released, the widget
+     becomes the selected widget.
+
+   * MB1: Moves widgets. If MB1 is pressed and held, and the mouse moved,
+     the widget will be dragged about in the application area. But see the
+     note below on container widgets.
+
+   * MB2: Resizes a widget. If it is the selected widget. Press and hold MB2
+     with the pointer in the selected widget, and it will drag-resize by
+     it's bottom right corner.
+
+The other way of selecting a widget is to click on the node in the tree of
+the Widget Heirarchy Display Window with the same name using MB1. Note that
+for this is the only way to select certain of the widget children in Menus.
+
+Selecting a widget results in it's corresponding node in the tree in the
+Widget Heirarchy Display Window to have it's colors inverted, and the widget
+in the application GUI to have a black border appear around it (in most
+cases; once in a great while this does not happen.)
+
+SPECIAL CASES 
+
+   * MENUBARS
+
+     Menus in Motif are somewhat obtuse. lxb is not at the point where it
+     makes building menus possible without knowing something about them.
+
+     The first widget instantatiated must be the MenuBar. It's parent can be
+     any container widget.
+
+     The second widget instantiated as the child of the MenuBar is the
+     Cascade Button. When the Cascade Button is created, so is a MenuShell 
+     and Pulldown, visable in the Widget Heirarchy Display window but not in 
+     the GUI application, the MenuShell as a child of the MenuBar and the 
+     pulldown as a child of the MenuShell. Welcome to Motif.
+
+     After the Cascade Button has been created, all other widgets desired
+     can be added - PushButtons, ToggleButtons, Seperators, etc, to make the
+     pulldown menu complete. 
+
+     NOTE: The parent, however, of these additional widgets is the PULLDOWN, 
+     not the Cascade Button.
+
+     Other Cascade Buttons can be created as children of the MenuBar and
+     similar hierarchies of widgets be created to build up a complete
+     MenuBar. However, Cascading Menus probably will not work, and I would
+     not use them. (Cascading menus are those where Cascade Buttons are
+     themselves children of other Cascade Buttons, so the you get a
+     multi-tiered menu cascading to the right). They are not good user
+     interface design, either, in MY honest opinion; it's better to use only
+     one layer of pulldown widgets from a Cascade button and if further
+     selection is required put up a popup for the user. Note, IMHO only.
+
+     MenuShells and Pulldowns cannot be edited or deleted. One must delete
+     the associated Cascade Button and delete the entire hierarchy.
+
+     The above rules will be inforced on you the user. Watch stdout for
+     messages.
+
+     Also, Menubars do not work real well in "Play Mode". But they come out
+     OK when the application is compiled and run.
+
+   * SCROLLED WINDOWS:
+
+     Use ScList and ScText to make ScrolledText and ScrolledList widgets,
+     instead of trying to make the widget heirarchy using the widget pallet.
+     This is this way because of Motif. Other widget heirarchies can be
+     created OK, like a Scrolled Window with a Drawing Area as a child.
+
+     You will notice scrollbars and clip window widgets being created
+     automagically at times and displayed on the Widget Hierarchy Display
+     Window. These widgets cannot be deleted without deleting the parent
+     Scrolled Window, although most of them can have their resources edited.
+     I wouldn't reccommend editing their resources, however, except for
+     maybe their background and foreground colors.
+
+     No ClipWindow widget is created for scrolled text or scrolled lists.
+
+     No horizontal scrollbar is created for a scrolled list.
+
+     To resize an ScList (scrolled list) resize the List child, then
+     re-select up in the heirarchy and the Scrolled Window parent will
+     resize by itself properly.
+
+     In order to get a resize of a ScrolledList or ScText a drag with mb2
+     held down on the parent ScrolledWindow is not enough. The width and
+     height of the child widget - the text or the list widget - must be
+     either set with mb2 or the width and height resources set explicitly
+     with the resource editor.
+
+   * SCROLL BARS:
+
+     The XmNvalue resource for the XmScrollBar widget is of type int.
+     The XmNvalue resource for the XmText widget is of type String.
+
+     Currently, lxb can only have one datatype for each resource type, and
+     XmText/String won. Getting or setting the resouce value for XmNvalue on
+     a Scrollbar with the resource editor will show garbage on the screen on
+     a get, and incorrect syntax on generated code for a set. So don't
+     change this resouce with lxb.
+
+   * Selecting Container Widgets
+
+     Such as forms, rowcolumns; currently may be difficult to select, or
+     impossible, depending on the border thickness and similar resources
+     without using the Widget Display Window. And of course this does not
+     help if you are trying to move or resize the container widgets. Try
+     clicking with the pointer on the very edge of the container widget. Of
+     course, you can always move and resize by editing the XmNx, XmNy,
+     XmNwidth, XmNheight resources after selecting using the Widget Display
+     Window.
+
+   * Forms
+
+     The XmForm widget is included in the widgets that may be instantiated
+     and resources edited with lxb. However, you may observe quite strange
+     behaviour in regard to this widget off and on. It is most likely due to
+     the resources you have set for it. You may want to play with the
+     XmNresizePolicy resource for the from to see if you get better results.
+
+     Beware circular contraints. They don't work.

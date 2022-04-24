@@ -1,0 +1,22 @@
+#!/bin/bash
+
+d=$(date | tr ' ' '.' | tr -s '.' | cut -d ' ' -f 1,2,3,4 | tr -d ' ' |tr -d :)
+
+echo
+echo "Date: " $d
+echo Backing up all files to ~lxb/bak/current-$d
+echo Backing up all files to /mnt/c/lxb.bak/backups/current-$d
+echo
+
+# make the backup directory
+mkdir -p ~lxb/bak/current-$d
+mkdir -p /mnt/c/lxb.bak/backups/current-$d
+
+# copy the backup
+echo Copying to ~lxb/bak...
+cp -r * ~lxb/bak/current-$d/
+echo Copying to windows:C...
+cp -r * /mnt/c/lxb.bak/backups/current-$d
+
+echo "Done!"
+

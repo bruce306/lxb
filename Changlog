@@ -1,0 +1,54 @@
+
+	3/2022 - See CHANGES file
+
+	- Rant: the design of Motif is very impressive, in how they
+		were able to design it to be object orientated in a non-OO language - C.
+
+		However, over all the design had lots of things that sucked. 
+
+		For one it tried to be all things to all people. The really bad part of 
+		it was that I think from what I knew way back when it was design by committee, with 
+		people on it with very different goals. The national goals were different;
+		the Europeans especially were way to bureaucratic and got stuff included
+		that I truly thought was one of the main reasons that it died. And it was
+		overly top heavy with too much multi language stuff.. had to be all things
+		to all languages. This made it bloated. 
+
+		Another was it was designed by too many acedemics - arrogant, all knowing, 
+		and they never were real life pragmatists or practical.
+
+		And the heaviest Sin was that they refused until it was effectivly dead, to 
+		release the source. That made it die.
+			
+		IDIOTS!! and such a loss and waste for so many people.
+	
+	- End of Rant
+
+	12/21/17
+
+	recapturing my youth, I am seeing if I can get this obsolete software to run as 
+	before. In the process pick back up some lost skills.
+
+	1) the Xm gzip archive I got I from sourceforge.net
+	
+	2) the other Xaw and Xmu gzip archives I got from x.org
+
+	3) I used the Xaw and Xmu libs installed already on v16 of Ubuntu
+		- I used the header files from the downloaded archives to
+		  include in the lxb software.
+		- I did not compile and install the downloaded libs, used 
+		  what was already installed.
+		- I had to make some links to the current libs in the lib
+		  system directory. Were not linked already.
+
+	4) I compiled and installed the downloaded Motif. 
+	   The header files for Motif where installed and used from the system
+	   directories.
+
+	5) I had to edit the Makefile to find the needed include files,
+           as they were in funny new named directories. 
+	   I had to 
+	   copy the header files for some libs onto a personal include 
+	   directory from the archives as not preloaded in Ubunto v16.
+	
+

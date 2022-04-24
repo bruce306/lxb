@@ -1,0 +1,53 @@
+
+Version 0.63
+-----------------------
+
+- reorganized 
+- debugging code
+- lots of stuff :)
+
+Version 0.62
+-----------------------
+
+- many bug fixes
+- cleaned up Menu stuff
+- debugging code
+
+Version 0.61 - 02/2022
+----------------------
+
+- autogen of a shell widget
+- added more Options 
+- Added ability to assign callback function names and code
+  for them.
+- ported to Ubuntu 20 including tools directory and headers
+- removed the use of my own compiled Xaw, Xmu, Xext, Motif 
+  libraries but used the libs provided with this version of 
+  Ubuntu and it seems to work
+- found that many packages needed are "legacy" and have to be
+  installed
+- did not mess with system libs except for package install
+- fixed ALOT of bugs
+- added a lot of debugging code
+
+
+What's New in Version 0.51 of lxb
+---------------------------------
+
+This is really a minor release. Little has changed since the
+original one done for X11R5 and Motif 1.1 on a 486. I am 
+working on a more major release (0.6) that I hope to have out
+soon.
+
+
+Changes:
+--------
+
+- bug fixes.
+
+- added fallback resources so that Lxb-ad no longer needs be used
+
+- updated some of the code (fe, appcontext functions)
+
+----------------------------------------------------------------------------
+

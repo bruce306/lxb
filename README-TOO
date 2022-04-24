@@ -1,0 +1,12 @@
+
+4/2022
+
+- I got Motif from the official source. But there is also the
+	legacy software LessTiff - an open source version of Motif.
+ 	I found out that with this release there was no need to 
+	use your own built Motif
+
+- System Depends:
+	I found many packages were required to be installed other
+	than the default packages that come with the base Ubuntu v20.
+	I did not keep track of them all. Sorry.
