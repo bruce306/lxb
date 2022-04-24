@@ -1,0 +1,21 @@
+/**************************************************
+ * File: status.h
+ **************************************************/
+
+/*
+Widget
+build_status_area(Widget parent);
+
+void
+set_appname(char *name);
+
+char *
+get_appname();
+
+void
+set_save_filename(char *name);
+
+char *
+get_save_filename();
+*/
+
