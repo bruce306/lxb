@@ -1,0 +1,25 @@
+####################################################
+
+This directory contains some GUI used in lxb and/or
+examples of interesting (to me) GUI. Also a couple
+of old X clients - 2/2022
+
+editres - is the official X client I ported to compile
+and run on v16 of Ubuntu Linux. Compiles on ubuntu v20 
+2/2022
+
+wtree - is an X program I used to learn about the Xaw
+widgets porthole and panner. Compiles on Ubuntu v20 
+2/2022
+
+xclock - an old x client. NOT checked 2/2002
+
+####################################################
+
+2/2022
+Ported for Ubuntu v20
+----------------------------
+1/9/18
+Ported for Ubuntu v18 or v16
+----------------------------
+
