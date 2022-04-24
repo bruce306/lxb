@@ -1,0 +1,92 @@
+LXB - Linux X Builder
+
+The source code for an old project I worked on but did not completely finish.
+Motif, C, UNIX (Ubuntu Linux), X11
+
+April 2022
+Bruce
+
+#############################################################
+
+System Requirments:
+
+This latest was built on an ancient laptop with Windows 10 and
+WSL V1 (Windows Subsytem for Linux) with Ubuntu v20. For the 
+X server I used Vcxsrv running on Windows. I also ran it at
+one point on a native Ubuntu v20 machine. I used WSL because
+my ancient system took forever to reboot. No other reason.
+
+(Note that WSL v2 gives the Linux subsytem a random IP, 
+different from the one Windows uses. So ssh'ing to my Linux 
+subsystem computer could not be reliably done - so stayed 
+with WSL v1s).
+
+
+To Build:
+
+A large number of packages had to be installed. I didn't keep
+track of them all....
+
+Unzip and untar the archive lxb-0.63.tar.gz. You will 
+see several directories and files.
+
+In the "src" directory do:
+
+1)	make clean
+2)	make depend
+3)	make
+
+To run enter: 
+	lxb or ./lxb
+
+To debug lxb or see what is happening, you can use the "-v", 
+or verbose, option such as: "lxb -v 4". 
+
+A simple Makefile is provided that works on my system - 
+Ubuntu v20 3/2022
+
+NOTES:
+
+1) "make depend" can easily give you problems if you do not
+have absolutely all the right packages installed. But the
+program can still be compiled OK without them and the system
+will find the functions in the libraries. If you are having 
+problems and just want to see if the program will compile 
+you can remove all the dependencies below the "#DO NOT DELETE"
+line at the bottom of the Makefile and do not run "make depend".
+
+2) Many packages have to be installed to compile this program
+without a hitch. You will just have to experiment on your system.
+I did not keep track of all the required packages for this to 
+build accurately.
+
+3) I left the "-W" flag in the Makefile as it is helpful once you
+get all the packages installed. You can comment it out if you just
+want to compile lxb to explore it's capabilties.
+
+Tools Directory
+---------------
+Do not do anything with the "tools" directory if you can
+help it. The simple programs there are used to find and
+define the implimented sizes of X data structures for a
+specific system. It makes various text header files that
+are included in source files for LXB. They are now current
+for I would think, any 64-bit system. 
+
+1) If you have made any changes in the tool directory,
+rebuild it first. If you have not, you most likely do not 
+need to do anything there.
+
+2) If you need to rebuild the tools directory, and if 
+you are on a Linux system, try a make with the
+existing Makefile in that directory. You may need to 
+change the paths to find your libraries and includes.
+------------------
+
+Source files names
+------------------
+A convention I at least followed in part was to make the source
+file names of functions to build the lxb GUI capitalized. GUI buid
+files for the application being built were not capitalized. Not
+universal but it started that way...
+
