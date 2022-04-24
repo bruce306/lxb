@@ -1,0 +1,9 @@
+
+This demonstrates how to make a menubar. Motif
+did not implement this well. 2/2022
+
+this contains an example program I made with lxb
+using an older than current version. but it still
+compiles though the save file does not work
+as the format has changed. 
+	See "orig" directory
