@@ -1,0 +1,35 @@
+
+This is the editres program source written by the X people
+ported to v16 of ubuntu
+
+2/22 - compiled on my system without any of the messy stuff
+below.
+
+1.9/18 - When run it may start iconified on the launch area. 
+if so to run it double click on the icon in that area.
+
+------------------------------------------------------------
+
+To compile for Ubuntu v16 you should be able to
+just type "make", providing you have the required
+X includes and libs and 
+
+.. change the home location in the Makefile
+
+You get some compiler warnings now but they should not
+matter....
+
+The below is i'm not sure valid anymore....
+
+-------------------------------------------
+
+		  Instructions for building Editres.
+
+Editres depends on the _EresInsert<something> and
+_EresRetrieve<something> routines that are are implemented and used by
+"EditresCom.c".  Since this module is intended to be included in your
+widget library or toolkit, editres should automatically link in the
+module, but if you have not included that module into your library you
+will need to edit the makefile to make sure that editres links in this
+file.
+
