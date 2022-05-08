@@ -78,10 +78,13 @@ for I would think, any 64-bit system.
 rebuild it first. If you have not, you most likely do not 
 need to do anything there.
 
-2) If you need to rebuild the tools directory, and if 
-you are on a Linux system, try a make with the
-existing Makefile in that directory. You may need to 
-change the paths to find your libraries and includes.
+2) If you need to rebuild the complete tools directory, and if 
+you are on a Linux system, try a "make clean", then "make" with the
+existing Makefile in that directory. NOTE: this "make clean" wiil 
+remove the existing header files that the tools create.
+   You may need to change the paths to find your libraries and 
+includes. And delete the dependecies below the "DO NOT DELETE" 
+line if you just want to get it compiled.
 ------------------
 
 Source files names
