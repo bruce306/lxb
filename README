@@ -2,7 +2,7 @@ LXB - Linux X Builder
 
 The source code for an old project I worked on but did not completely finish.
 I did recently complete it to the point that effective, useful GUI can be built.
-Motif, C, UNIX (Ubuntu Linux), X11
+It uses Motif, X11, C, on UNIX (Ubuntu Linux).
 
 April 2022
 Bruce
